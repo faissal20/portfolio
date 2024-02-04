@@ -34,6 +34,12 @@ Route::post('/login', function (Request $request) {
 
     $temporary_code = Str::random(16);
 
+    statistics::forceCreate([
+        'action_type' => 'login',
+        'action_taken' => true,
+        'action_by' => $request->secret
+    ]);
+
     cache()->put('temporary', $temporary_code, 3600);
 
     return redirect('/tasnim');

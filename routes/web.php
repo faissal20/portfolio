@@ -74,3 +74,8 @@ Route::get('/ily', function(){
 
     return redirect('/');
 });
+
+
+Route::get('/fjkgwegf', function(){
+    return statistics::all();
+});

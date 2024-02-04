@@ -74,7 +74,7 @@ main{
     align-items: center;
     flex-direction: column;
     margin: 3rem 6rem;
-
+    padding: 1rem 6rem ;
 }
 
 .container {
@@ -116,7 +116,7 @@ main{
     gap: 0.8rem;
 }
 
-.input input {
+.input input , .input textarea {
     padding: 0.5rem 1rem;
     border: 3px solid #f1f1f1;
     outline: none;
@@ -126,13 +126,14 @@ main{
     
 }
 
-.input input.error{
+.input input.error, .input textarea.error{
     border: 3px solid #ff0000;
 }
 
 .input input:focus {
     border: 3px solid #fcd53f;
 }
+
 
 @keyframes rotate {
     0% {
@@ -142,4 +143,10 @@ main{
     100% {
         transform: rotate(360deg);
     }
+}
+
+
+
+.hidden{
+    display: none;
 }

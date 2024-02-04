@@ -47,6 +47,30 @@ Route::post('/login', function (Request $request) {
 })->name('login');
 
 
+Route::get('/sunflowers', function(){
+    if(cache('temporary')) {
+        return view('sunflowers');
+    }
+
+    return redirect('/');
+});
+
+Route::post('sunflowers', function(Request $request){
+    $request->validate([
+        'message' => 'required|string'
+    ]);
+
+    statistics::forceCreate([
+        'action_type' => 'message',
+        'action_taken' => true,
+        'action_by' => $request->message,
+    ]);
+
+
+    return redirect('/ily');
+});
+
+
 Route::get('/tasnim', function (Request $request) {
 
     if(cache('temporary')) {

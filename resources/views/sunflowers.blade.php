@@ -13,6 +13,12 @@
         Aslo I am thinking of you all the time. 
     </p>
     
+    <br>
+
+    <p>
+        * since you didn't see the message this morning I will wish you a BUENAS NOCHES MI TODO and maybe tomorrow I will more things. 
+    </p>
+
     <form action="" method="post" id="form">
         @csrf
         <div class="input" id="messageInput">

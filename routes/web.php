@@ -32,14 +32,17 @@ Route::post('/login', function (Request $request) {
         'secret' => 'required|string|in:mxisati,Mxisati,MXISATI,mchisati,Mchisati,MCHISATI'
     ]);
 
-
-    $temporary_code = Str::random(16);
+    $ip = $request->ip();
+    $user_agent = $request->header('User-Agent');
 
     statistics::forceCreate([
         'action_type' => 'login',
         'action_taken' => true,
-        'action_by' => $request->secret
+        'action_by' => json_encode(['ip' => $ip, 'user_agent' => $user_agent, 'secret' => $request->secret])
     ]);
+
+    $temporary_code = Str::random(16);
+
 
     cache()->put('temporary', $temporary_code, 3600);
 

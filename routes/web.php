@@ -25,6 +25,7 @@ Route::get('/', function () {
     return view('login');
 });
 
+
 Route::post('/login', function (Request $request) {
 
     $request->validate([
@@ -47,13 +48,14 @@ Route::post('/login', function (Request $request) {
 })->name('login');
 
 
+
 Route::get('/sunflowers', function(){
     if(cache('temporary')) {
         return view('sunflowers');
     }
 
     return redirect('/');
-});
+})->name('sunflowers');
 
 Route::post('sunflowers', function(Request $request){
     $request->validate([
@@ -68,7 +70,7 @@ Route::post('sunflowers', function(Request $request){
 
 
     return redirect('/ily');
-});
+})->name('sunflowers');
 
 
 Route::get('/tasnim', function (Request $request) {
@@ -78,7 +80,7 @@ Route::get('/tasnim', function (Request $request) {
     }
 
     return redirect('/');
-});
+})->name('tasnim');
 
 
 Route::post('/tasnim', function(Request $request){
@@ -93,7 +95,7 @@ Route::post('/tasnim', function(Request $request){
     ]);
 
     return redirect('/ily');
-});
+})->name('tasnim');
 
 
 Route::get('/ily', function(){
@@ -103,9 +105,14 @@ Route::get('/ily', function(){
     }   
 
     return redirect('/');
-});
+})->name('ily');
 
 
-Route::get('/fjkgwegf', function(){
+Route::get('/data', function(){
     return statistics::all();
 });
+
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

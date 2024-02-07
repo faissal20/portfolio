@@ -3,13 +3,16 @@
 @section('content')
 <div class="container">
     <h1>
-        Tasnim
+        Good Morning My Everything !
     </h1>
 
     <p>
-        So many sunflowers in this world, but you are the one that shines the most. 🌻
+        You know since you are busy this days. I just want to say Good Luck, Be Happy and Have a nice day.
     </p>
-
+    <p>
+        Aslo I am thinking of you all the time. 
+    </p>
+    
     <form action="" method="post" id="form">
         @csrf
         <div class="input" id="messageInput">

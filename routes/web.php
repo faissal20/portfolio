@@ -23,7 +23,8 @@ Route::get('/', function () {
     }
 
     return view('login');
-});
+
+})->name('welcome');
 
 
 Route::post('/login', function (Request $request) {

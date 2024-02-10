@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="section">
+    <div class="section login">
         <div class="card">
             <h1>Hi you ! <span class="waving">👋</span></h1>
 

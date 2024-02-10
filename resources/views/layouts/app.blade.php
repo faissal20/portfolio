@@ -17,7 +17,7 @@
     @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body style="background-image: url('{{ asset('/assets/background.jpg') }}'); ">
+<body style="background-image: url('{{ asset('/assets/background.jpg') }}'); @auth backdrop-filter: blur(20px);  @endauth">
     <div id="app">
         <header>
             <nav class="navbar">
@@ -65,7 +65,7 @@
         </header>
 
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>

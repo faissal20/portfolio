@@ -140,6 +140,7 @@ main {
 
 
 .side-navbar {
+    flex: 1;
     margin: 2rem 0;
     padding: 1rem .5rem;
     background-color: #40404020;
@@ -150,9 +151,9 @@ main {
         list-style: none;
         padding: 0;
         margin: 1rem 0;
-
+        color: $color-black;
         li {
-            padding: .5rem 1rem;
+            padding: .8rem 1rem;
             margin-top: .5rem;
             display: flex;
             justify-content: flex-start;
@@ -173,6 +174,11 @@ main {
         }
 
     }
+}
+
+.page-content{
+    padding: 2rem;
+    flex: 4;
 }
 
 .btn-primary {

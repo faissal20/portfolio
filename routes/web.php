@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\NotificationsController;
+use App\Http\Controllers\Api\StatisticsController;
 use App\Models\statistics;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -95,67 +98,15 @@ Route::middleware('auth')->group(function () {
 });
 
 
+Route::prefix('api')->group(function(){
 
+    Route::get('/home', [HomeController::class, 'index']);
 
+    Route::get('/notifications', [NotificationsController::class, 'index']);
 
-Route::get('/sunflowers', function(){
-    if(cache('temporary')) {
-        return view('sunflowers');
-    }
+    Route::get('/ourStatistics', [StatisticsController::class, 'index']);
 
-    return redirect('/');
-})->name('sunflowers');
-
-Route::post('sunflowers', function(Request $request){
-    $request->validate([
-        'message' => 'required|string'
-    ]);
-
-    statistics::forceCreate([
-        'action_type' => 'message',
-        'action_taken' => true,
-        'action_by' => $request->message,
-    ]);
-
-
-    return redirect('/ily');
-})->name('sunflowers');
-
-
-Route::get('/tasnim', function (Request $request) {
-
-    if(cache('temporary')) {
-        return view('welcome');
-    }
-
-    return redirect('/');
-})->name('tasnim');
-
-
-Route::post('/tasnim', function(Request $request){
-    $request->validate([
-        'action' => 'string|in:forgive'
-    ]);
-
-    statistics::forceCreate([
-        'action_type' => 'fogivness',
-        'action_taken' => true,
-        'action_by' => 'Tasnim'
-    ]);
-
-    return redirect('/ily');
-})->name('tasnim');
-
-
-Route::get('/ily', function(){
-
-    if(cache('temporary')) {
-        return view('result');
-    }   
-
-    return redirect('/');
-})->name('ily');
-
+})->middleware('auth');
 
 Route::get('/data', function(){
     return statistics::all();

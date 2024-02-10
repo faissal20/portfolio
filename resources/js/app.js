@@ -6,7 +6,7 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
-
+import { createRouter, createWebHashHistory } from 'vue-router';
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
@@ -20,10 +20,16 @@ import ExampleComponent from './components/ExampleComponent.vue';
 
 
 // pages 
-import AppPage from './pages/AppPage.vue';
+import AppPage from './AppPage.vue';
+import Home from './pages/Home.vue';
+import Statistics from './pages/Statistics.vue';
+
+
 
 app.component('example-component', ExampleComponent);
 app.component('app-page', AppPage);
+app.component('home-page', Home);
+app.component('statistics-page', Statistics);
 
 /**
  * The following block of code may be used to automatically register your
@@ -42,5 +48,19 @@ app.component('app-page', AppPage);
  * an "id" attribute of "app". This element is included with the "auth"
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
+
+const routes = [
+    { path: '/', component: Home },
+    { path: '/statistics', component: Statistics },
+]
+
+const router = createRouter({
+    history: createWebHashHistory(),
+    routes, // short for `routes: routes`
+})
+
+
+app.use(router)
+
 
 app.mount('#app');

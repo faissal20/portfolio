@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\statistics;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,38 +19,80 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    if(cache('temporary')) {
-        cache()->forget('temporary');
-    }
-
-    return view('login');
+    return view('welcome');
 
 })->name('welcome');
 
 
-Route::post('/login', function (Request $request) {
+Route::middleware('guest')->group(function () {
 
-    $request->validate([
-        'secret' => 'required|string|in:mxisati,Mxisati,MXISATI,mchisati,Mchisati,MCHISATI'
-    ]);
+    Route::get('/login', function (Request $request) {
+        return view('login');
+    })->name('login');
 
-    $ip = $request->ip();
-    $user_agent = $request->header('User-Agent');
+    Route::post('/login', function (Request $request) {
 
-    statistics::forceCreate([
-        'action_type' => 'login',
-        'action_taken' => true,
-        'action_by' => json_encode(['ip' => $ip, 'user_agent' => $user_agent, 'secret' => $request->secret])
-    ]);
-
-    $temporary_code = Str::random(16);
+        $request->validate([
+            'username' => 'required|string|exists:users,username',
+            'password' => 'required|string',
+            'remember' => 'boolean',
+        ]);
 
 
-    cache()->put('temporary', $temporary_code, 3600);
+        $user = User::where('username', $request->username)->firstOrFail();
 
-    return redirect('/sunflowers');
+        if(!password_verify($request->password, $user->password)) {
+            return back()->withErrors(['password' => 'Invalid password']);
+        }
+
+        if($request->remember) {
+            $token = Str::random(60);
+            $user->forceFill([
+                'remember_token' => hash('sha256', $token),
+            ])->save();
+
+            cookie()->queue('remember', $token, 60 * 24 * 30);
+        }
+
+        auth()->login($user, true);
+
+        $ip = $request->ip();
+        $user_agent = $request->header('User-Agent');
     
-})->name('login');
+        statistics::forceCreate([
+            'action_type' => 'login',
+            'action_by' => $user->username,
+            'action_data' => json_encode(['ip' => $ip, 'user_agent' => $user_agent]),
+        ]);
+    
+        return redirect('/home');
+        
+    })->name('login');
+});
+
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/home', function () {
+        return view('home');
+    })->name('home');
+
+    Route::post('/logout', function (Request $request) {
+
+        $ip = $request->ip();
+        $user_agent = $request->header('User-Agent');
+    
+        statistics::forceCreate([
+            'action_type' => 'logout',
+            'action_taken' => true,
+            'action_by' => json_encode(['ip' => $ip, 'user_agent' => $user_agent])
+        ]);
+
+        return redirect('/');
+    })->name('logout');
+});
+
+
 
 
 

@@ -20,7 +20,7 @@
 <body style="background-image: url('{{ asset('/assets/background.jpg') }}'); ">
     <div id="app">
         <header>
-            <nav class="navbar ">
+            <nav class="navbar">
                 <a class="logo" href="{{ url('/') }}">
                     🌕
                 </a>
@@ -44,7 +44,7 @@
 
                         @guest
                             <li>
-                                <a class="btn-secondary" href="{{ route('welcome') }}">
+                                <a class="btn-secondary" href="{{ route('login') }}">
                                     login
                                 </a>
                             </li>

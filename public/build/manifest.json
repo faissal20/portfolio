@@ -5,12 +5,15 @@
     "src": "resources/css/app.css"
   },
   "resources/js/app.js": {
-    "file": "assets/app-9eMpmbij.js",
+    "css": [
+      "assets/app-OBD-u8F5.css"
+    ],
+    "file": "assets/app-soewBkzb.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-uOqH5v2f.css",
+    "file": "assets/app-0O7FT7FA.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   }

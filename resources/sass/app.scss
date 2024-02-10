@@ -50,17 +50,21 @@ header {
         backdrop-filter: blur(2px);
         width: 50%;
         column-gap: 2rem;
+
         .logo {
             font-size: 40px;
             animation: rotate 2s linear infinite;
+
             @keyframes rotate {
                 0% {
-                    
+
                     transform: rotate(0deg) translateY(7px);
                 }
+
                 50% {
                     transform: rotate(180deg) translateY(0);
                 }
+
                 100% {
                     transform: rotate(360deg) translateY(7px);
                 }
@@ -78,6 +82,7 @@ header {
             justify-content: space-between;
             align-items: center;
             list-style: none;
+
             li {
                 margin: 0 .4rem;
             }
@@ -102,23 +107,27 @@ main {
     align-items: center;
     flex-direction: column;
     padding: .5rem 6rem;
-    width: 100dvw;   
+    width: 100dvw;
 
     .section {
         padding: 1rem;
+
         @media screen and (max-width: 768px) {
             padding: .5rem;
         }
+
         @media screen and (min-width: 2000px) {
             padding: 4rem 10rem;
         }
 
-        &.login  {
+        &.login {
             width: 40%;
+
             @media screen and (max-width: 1000px) {
                 width: 100%;
 
             }
+
             @media screen and (min-width: 2000px) {
                 width: 60%;
 
@@ -130,34 +139,43 @@ main {
 }
 
 
-.side-navbar{
+.side-navbar {
     margin: 2rem 0;
     padding: 1rem .5rem;
     background-color: #40404020;
     border-radius: 7px;
     backdrop-filter: blur(2px);
-   ul {
-         list-style: none;
-         padding: 0;
-         margin: 0;
-         li {
-              padding: .3rem .8rem;
-              display: flex;
-              justify-content: flex-start;
-              align-items: center;
-              gap: 1rem;
-              cursor: pointer;
-              transition: all 0.3s ease-in-out;
-              &:hover {
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
+
+        li {
+            padding: .5rem 1rem;
+            margin-top: .5rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            border-radius: 7px;
+            transition: all 0.1s ease-in-out;
+
+            &:hover {
                 background-color: #fcd53f;
                 color: #000;
-              }
-         }
-    
-   }
+            }
+
+            span {
+                margin-left: 1rem;
+            }
+        }
+
+    }
 }
 
-.btn-primary { 
+.btn-primary {
     background-color: #fcd53f;
     border: none;
     padding: 0.5rem 1rem;
@@ -189,25 +207,28 @@ main {
     transform: scale(1.1);
 }
 
-.card{
+.card {
     padding: 2rem 3rem;
     box-shadow: 0 0 10px 0 #00000020;
     border-radius: 7px;
     backdrop-filter: blur(2px);
     background-color: #ffffff90;
     font-weight: 700;
+
     h1 {
         margin-bottom: 1rem;
     }
+
     p {
         margin-bottom: 1rem;
     }
 
-    form{
+    form {
         display: flex;
         justify-content: center;
         align-items: flex-start;
         flex-direction: column;
+
         button[type="submit"] {
             margin-top: .8rem;
             align-self: flex-end;
@@ -218,7 +239,7 @@ main {
 }
 
 .alert {
-    padding: .8rem 1rem ;
+    padding: .8rem 1rem;
     border-radius: 5px;
     font-weight: 700;
     margin: .8rem 0 .5rem 0;
@@ -226,18 +247,22 @@ main {
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+
     &.success {
         background-color: #d4edda;
         color: #155724;
     }
+
     &.error {
         background-color: #f8d7da;
         color: #721c24;
     }
+
     &.warning {
         background-color: #fff3cd;
         color: #856404;
     }
+
     &.info {
         background-color: #d1ecf1;
         color: #0c5460;
@@ -304,7 +329,7 @@ a {
 }
 
 
-.waving{
+.waving {
     // todo
 }
 

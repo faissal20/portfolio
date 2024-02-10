@@ -40,6 +40,15 @@
                                     <i class="fa-regular fa-envelope"></i>
                                 </button>
                             </li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button class="btn-icon">
+                                        <i class="fa-solid fa-right-from-bracket"></i>
+                                    </button>
+                                </form>
+                            </li>
+
                         @endauth
 
                         @guest

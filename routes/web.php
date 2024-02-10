@@ -84,9 +84,11 @@ Route::middleware('auth')->group(function () {
     
         statistics::forceCreate([
             'action_type' => 'logout',
-            'action_taken' => true,
-            'action_by' => json_encode(['ip' => $ip, 'user_agent' => $user_agent])
+            'action_by' => auth()->user()->username,
+            'action_data' => json_encode(['ip' => $ip, 'user_agent' => $user_agent])
         ]);
+
+        auth()->logout();
 
         return redirect('/');
     })->name('logout');

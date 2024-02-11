@@ -1,18 +1,9 @@
-<style>
-
-</style>
 <template>
-    <div>
-        <h3>
-            Today's Message 
-        </h3>
-    </div>
+    <DailyMessage />
 </template>
 
-<script>
-export default {
-    mounted() {
-        console.log('Component mounted.')
-    }
-}
+<script setup>
+
+import DailyMessage from '../components/DailyMessage.vue';
+
 </script>

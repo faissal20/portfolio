@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('our_statistics', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->string('heart_storage')->default('0%');
             $table->string('knowledge')->default('0%');
             $table->string('missing')->default('0%');

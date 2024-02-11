@@ -2,10 +2,38 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Models\statistics;
+use App\Models\DailyMessage;
+use App\Models\OurStatistic;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
-    //
+    public function index()
+    {
+        $messages = DailyMessage::where('date', now()->format('Y-m-d'))->get();
+
+        return response()->json([
+            'dailyMessage' => $messages,
+            'statistics' => OurStatistic::where('user_id', auth()->user()->id)->first(),
+        ]);
+    }
+
+    public function leaveMessage(Request $request)
+    {
+        $request->validate([
+            'message' => 'required|string'
+        ]);
+
+        statistics::create([
+            'action_name' => 'leave_message',
+            'action_by' => auth()->user()->id,
+            'action_data' => json_encode(['message' => $request->message])
+        ]);
+
+        return response()->json(['message' => 'Message has been saved!']);
+    }
+
+
 }

@@ -108,6 +108,8 @@ Route::prefix('api')->group(function(){
 
 })->middleware('auth');
 
+
+
 Route::get('/data', function(){
     return statistics::all();
 });

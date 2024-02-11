@@ -7,6 +7,7 @@
 import './bootstrap';
 import { createApp } from 'vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
+import { createPinia } from 'pinia'
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
@@ -16,8 +17,6 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 const app = createApp({});
 
 // components
-import ExampleComponent from './components/ExampleComponent.vue';
-
 
 // pages 
 import AppPage from './AppPage.vue';
@@ -26,7 +25,6 @@ import Statistics from './pages/Statistics.vue';
 
 
 
-app.component('example-component', ExampleComponent);
 app.component('app-page', AppPage);
 app.component('home-page', Home);
 app.component('statistics-page', Statistics);
@@ -59,8 +57,12 @@ const router = createRouter({
     routes, // short for `routes: routes`
 })
 
+const pinia = createPinia()
+
+
 
 app.use(router)
+app.use(pinia)
 
 
 app.mount('#app');

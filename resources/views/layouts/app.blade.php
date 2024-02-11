@@ -31,19 +31,19 @@
                         <!-- Authentication Links -->
                         @auth
                             <li>
-                                <button class="btn-icon">
+                                <button class="btn-icon scaled">
                                     <i class="fa-regular fa-bell"></i>
                                 </button>
                             </li>
                             <li>
-                                <button class="btn-icon">
+                                <button class="btn-icon scaled">
                                     <i class="fa-regular fa-envelope"></i>
                                 </button>
                             </li>
                             <li>
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
-                                    <button class="btn-icon">
+                                    <button class="btn-icon scaled">
                                         <i class="fa-solid fa-right-from-bracket"></i>
                                     </button>
                                 </form>
@@ -53,7 +53,7 @@
 
                         @guest
                             <li>
-                                <a class="btn-secondary" href="{{ route('login') }}">
+                                <a class="btn-secondary scaled" href="{{ route('login') }}">
                                     login
                                 </a>
                             </li>

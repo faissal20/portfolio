@@ -54,6 +54,76 @@ let increaseHeart = () => {
     store.setStatistics(data)
 }
 
+let decreaseHeart = () => {
+    let data = {
+        heart_storage: store.stats.heartStorage != 0 ? parseInt(store.stats.heartStorage) - 1 : 0,
+        knowledge: store.stats.knowledge,
+        missing: store.stats.missing,
+        happiness: store.stats.happiness
+    }
+    store.setStatistics(data)
+}
+let increaseKnowledge = () => {
+    let data = {
+        heart_storage: store.stats.heartStorage,
+        knowledge: store.stats.knowledge != 100 ? parseInt(store.stats.knowledge) + 1 : 100,
+        missing: store.stats.missing,
+        happiness: store.stats.happiness
+    }
+    console.log(data)
+    store.setStatistics(data)
+}
+
+let decreaseKnowledge = () => {
+    let data = {
+        heart_storage: store.stats.heartStorage,
+        knowledge: store.stats.knowledge != 0 ? parseInt(store.stats.knowledge) - 1 : 0,
+        missing: store.stats.missing,
+        happiness: store.stats.happiness
+    }
+    store.setStatistics(data)
+}
+let increaseMissing = () => {
+    let data = {
+        heart_storage: store.stats.heartStorage,
+        knowledge: store.stats.knowledge,
+        missing: store.stats.missing != 100 ? parseInt(store.stats.missing) + 1 : 0,
+        happiness: store.stats.happiness
+    }
+    console.log(data)
+    store.setStatistics(data)
+}
+
+let decreaseMissing = () => {
+    let data = {
+        heart_storage: store.stats.heartStorage,
+        knowledge: store.stats.knowledge,
+        missing: store.stats.missing != 0 ? parseInt(store.stats.missing) - 1 : 0,
+        happiness: store.stats.happiness
+    }
+    store.setStatistics(data)
+}
+let increaseHappiness = () => {
+    let data = {
+        heart_storage: store.stats.heartStorage,
+        knowledge: store.stats.knowledge,
+        missing: store.stats.missing,
+        happiness: store.stats.happiness != 100 ? parseInt(store.stats.happiness) + 1 : 0,
+    }
+    console.log(data)
+    store.setStatistics(data)
+}
+
+let decreaseHappiness = () => {
+    let data = {
+        heart_storage: store.stats.heartStorage,
+        knowledge: store.stats.knowledge,
+        missing: store.stats.missing,
+        happiness: store.stats.happiness != 0 ? parseInt(store.stats.happiness) - 1 : 0,
+    }
+    store.setStatistics(data)
+}
+
 </script>
 <template>
     <div>
@@ -70,7 +140,7 @@ let increaseHeart = () => {
                     <div class="footer">
                         <div class="control">
                             <button class="increas" @click="increaseHeart()"><i class="fa-solid fa-plus"></i></button>
-                            <button class="increas"><i class="fa-solid fa-minus"></i></button>
+                            <button class="increas" @click="decreaseHeart()"><i class="fa-solid fa-minus"></i></button>
                         </div>
                         <p>{{ stats.heartStorage }} %</p>
                     </div>
@@ -80,8 +150,8 @@ let increaseHeart = () => {
                     <h4>Knowledge</h4>
                     <div class="footer">
                         <div class="control">
-                            <button class="increas" @click="increaseHappiness()"><i class="fa-solid fa-plus"></i></button>
-                            <button class="increas"><i class="fa-solid fa-minus"></i></button>
+                            <button class="increas" @click="increaseKnowledge()"><i class="fa-solid fa-plus"></i></button>
+                            <button class="increas" @click="decreaseKnowledge()"><i class="fa-solid fa-minus"></i></button>
                         </div>
                         <p>{{ stats.knowledge }} %</p>
                     </div>
@@ -91,8 +161,8 @@ let increaseHeart = () => {
                     <h4>Missing</h4>
                     <div class="footer">
                         <div class="control">
-                            <button class="increas"><i class="fa-solid fa-plus"></i></button>
-                            <button class="increas"><i class="fa-solid fa-minus"></i></button>
+                            <button class="increas" @click="increaseMissing"><i class="fa-solid fa-plus"></i></button>
+                            <button class="increas" @click="decreaseMissing"><i class="fa-solid fa-minus"></i></button>
                         </div>
                         <p>{{ stats.missing }} %</p>
                     </div>
@@ -102,8 +172,8 @@ let increaseHeart = () => {
                     <h4>Happiness</h4>
                     <div class="footer">
                         <div class="control">
-                            <button class="increas"><i class="fa-solid fa-plus"></i></button>
-                            <button class="increas"><i class="fa-solid fa-minus"></i></button>
+                            <button class="increas" @click="increaseHappiness"><i class="fa-solid fa-plus"></i></button>
+                            <button class="increas" @click="decreaseHappiness"><i class="fa-solid fa-minus"></i></button>
                         </div>
                         <p>{{ stats.happiness === "uknown" ? stats.happiness : stats.happiness + "%" }} %</p>
                     </div>

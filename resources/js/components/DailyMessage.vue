@@ -23,11 +23,11 @@ dailyMessages = computed(() => homeStore.messages);
             <p >
 
     
-                Hey Tasnim
+                Hey Tasnim <br>
     
                 I know you're not feeling well, and it's tough being apart. Sending you all my energy and healing vibes. Take the
                 time you need to rest, and remember I'm just a massage away if you need anything. Wishing you a speedy recovery.
-                Can't wait to see you smiling again.
+                Can't wait to see you smiling again. <br>
     
                 Get Well Soon, Mi Todo ❤️
                 

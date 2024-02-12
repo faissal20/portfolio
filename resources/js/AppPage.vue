@@ -5,6 +5,13 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+    flex-wrap: wrap;
+}
+@media screen and (max-width: 768px) {
+    .app {
+        flex-direction: column;
+    }
+    
 }
 </style>
 

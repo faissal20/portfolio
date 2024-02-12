@@ -26,9 +26,9 @@ class HomeController extends Controller
             'message' => 'required|string'
         ]);
 
-        statistics::create([
-            'action_name' => 'leave_message',
-            'action_by' => auth()->user()->id,
+        statistics::forceCreate([
+            'action_type' => 'leave_message',
+            'action_by' => auth()->user()->username,
             'action_data' => json_encode(['message' => $request->message])
         ]);
 

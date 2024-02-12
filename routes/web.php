@@ -101,10 +101,20 @@ Route::middleware('auth')->group(function () {
 Route::prefix('api')->group(function(){
 
     Route::get('/home', [HomeController::class, 'index']);
+    Route::post('/home/leaveMessage', [HomeController::class, 'leaveMessage']);
 
     Route::get('/notifications', [NotificationsController::class, 'index']);
+    Route::get('/notifications/{id}', [NotificationsController::class, 'show']);
+    Route::post('/notifications', [NotificationsController::class, 'store']);
+    Route::put('/notifications/{id}', [NotificationsController::class, 'update']);
+    Route::delete('/notifications/{id}', [NotificationsController::class, 'destroy']);
 
     Route::get('/ourStatistics', [StatisticsController::class, 'index']);
+    Route::get('/ourStatistics/{id}', [StatisticsController::class, 'show']);
+    Route::post('/ourStatistics', [StatisticsController::class, 'store']);
+    Route::put('/ourStatistics/{id}', [StatisticsController::class, 'update']);
+    Route::delete('/ourStatistics/{id}', [StatisticsController::class, 'destroy']);
+
 
 })->middleware('auth');
 

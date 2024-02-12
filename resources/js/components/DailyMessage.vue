@@ -11,7 +11,7 @@ let showLeaveMessage = ref(false);
 
 dailyMessages = computed(() => homeStore.messages);
 
-let messageleft = ref("test message left"); 
+let messageleft = ref(""); 
 
 
 let submitMessage = () => {
@@ -47,7 +47,7 @@ let updateLeftMessage = (event) => {
             </div>
         </div> -->
         <div class="" style="margin-bottom: 1rem">
-            <p >
+            <!-- <p >
 
     
                 Hey Tasnim 🌻 <br><br>
@@ -57,7 +57,7 @@ let updateLeftMessage = (event) => {
                 <br>
                 Mi Todo ❤️
                 
-            </p>
+            </p> -->
 
         </div>
 
@@ -65,7 +65,7 @@ let updateLeftMessage = (event) => {
             <form action="">    
                 <div class="input">
                     <label for="message">Leave a message</label>
-                    <textarea name="message" @change="updateLeftMessage(e)"  id="message" cols="3" rows="2">
+                    <textarea name="message" v-model="messageleft"  id="message" cols="3" rows="2">
                     </textarea>
                 </div>
                 <div class="input">

@@ -10,6 +10,7 @@
 @media screen and (max-width: 768px) {
     .app {
         flex-direction: column;
+        align-items: stretch;
     }
     
 }

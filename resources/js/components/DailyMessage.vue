@@ -50,12 +50,11 @@ let updateLeftMessage = (event) => {
             <p >
 
     
-                Hey Tasnim 🌻 <br><br>
-    
-                I hope you're feeling better today. don't make any pressure on yourself, and be sure that I am thinking of you now. <br>
-                <br>
-                <br>
-                Mi Todo ❤️
+                Good Morning Tasnim 🌻 
+                <br><br>
+                This is your Daily Message from me. I hope you have a great day ahead. if you sruggle with anything, remember that I am always here for you. we can talk and share anything.
+                <br><br>
+                Good Luck Mi Todo ❤️
                 
             </p>
 

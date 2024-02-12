@@ -27,8 +27,12 @@
 body {
     max-width: 100dvw;
     overflow-x: hidden;
-    height: max(100vh, 100vw);
+    min-height: 100vh, 100%;
     background-size: cover;
+    background-attachment: fixed;
+    background-position: left;
+    background-repeat: no-repeat;
+
     font-family: $primary-font-family-sans-serif;
     font-weight: 300;
 }
@@ -36,7 +40,7 @@ body {
 
 header {
     display: flex;
-    width: 100dvw;
+    max-width: 100dvw;
     justify-content: center;
     align-items: center;
 
@@ -108,8 +112,6 @@ main {
     align-items: center;
     flex-direction: column;
     padding: .5rem 6rem;
-    width: 100dvw;
-
     .section {
         padding: 1rem;
 

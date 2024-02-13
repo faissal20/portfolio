@@ -11,7 +11,7 @@ let showLeaveMessage = ref(false);
 
 dailyMessages = computed(() => homeStore.messages);
 
-let messageleft = ref(""); 
+let messageleft = ref("");
 
 
 let submitMessage = () => {
@@ -46,25 +46,34 @@ let updateLeftMessage = (event) => {
                 {{ message.message }}
             </div>
         </div> -->
-        <div class="" style="margin-bottom: 1rem">
-            <p >
+        <div class="" style="margin: 1rem 0">
+            <p>
 
-    
-                Good Morning Tasnim 🌻 
-                <br><br>
-                This is your Daily Message from me. I hope you have a great day ahead. if you sruggle with anything, remember that I am always here for you. we can talk and share anything.
-                <br><br>
-                Good Luck Mi Todo ❤️
-                
+
+                Good Morning Tasnim 🌻 it's 14 February.
+                <br>
+                <br>
+                As always, I'm here to remind you that you are loved, worthy, and enough. Today being Valentine's Day, I may
+                not be able to give you flowers or chocolates 🍫, but I can offer you my constant love and support ❤️ and this words, not just
+                today but for every single day 😇. I'm not the type of person who waits for a special occasion to express affection or
+                give gifts. I believe you deserve appreciation every second, minute, day, month and year. You
+                deserve more than just one day to be truly appreciated
+                <br>
+                <br>
+                I hope you have a great day ahead. Remember to take care of yourself. 
+                <br>
+                <br>
+                Be Happy Mi Todo ❤️❤️❤️❤️
+
             </p>
 
         </div>
 
-        <div v-if="showLeaveMessage" >
-            <form action="">    
+        <div v-if="showLeaveMessage">
+            <form action="">
                 <div class="input">
                     <label for="message">Leave a message</label>
-                    <textarea name="message" v-model="messageleft"  id="message" cols="3" rows="2">
+                    <textarea name="message" v-model="messageleft" id="message" cols="3" rows="2">
                     </textarea>
                 </div>
                 <div class="input">
@@ -80,5 +89,4 @@ let updateLeftMessage = (event) => {
 <style>
 .message {
     padding-top: 2rem;
-}
-</style>
+}</style>

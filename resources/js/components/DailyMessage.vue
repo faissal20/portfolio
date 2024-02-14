@@ -13,15 +13,16 @@ dailyMessages = computed(() => homeStore.messages);
 
 let messageleft = ref("");
 
+let response = ref("");
 
 let submitMessage = () => {
     console.log(messageleft.value)
     axios.post('/api/home/leaveMessage', {
         message: messageleft.value
     }).then(response => {
-        dailyMessages.value.push(response.data);
+        response.value = response.data.message;
     }).catch(error => {
-        console.log(error);
+        response.value = error.response.data.message;
     });
 
     showLeaveMessage.value = false;
@@ -73,16 +74,17 @@ let updateLeftMessage = (event) => {
             <form action="">
                 <div class="input">
                     <label for="message">Leave a message</label>
-                    <textarea name="message" v-model="messageleft" id="message" cols="3" rows="2">
+                    <textarea name="message" v-model="messageleft" placeholder="Write Something beautifull !"  id="message" cols="3" rows="2">
                     </textarea>
+                    
                 </div>
                 <div class="input">
                     <button class="btn-primary effect-1" @click="submitMessage()">Send</button>
                 </div>
             </form>
         </div>
-
         <button v-if="!showLeaveMessage" class="btn-secondary effect-1" @click="show()">Leave a message</button>
+        <p style="color: red; margin-top:2rem">{{ response }}</p>
     </div>
 </template>
 

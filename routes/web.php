@@ -31,7 +31,7 @@ Route::middleware('guest')->group(function () {
 
     Route::get('/login', function (Request $request) {
         return view('login');
-    })->name('login');
+    });
 
     Route::post('/login', function (Request $request) {
 

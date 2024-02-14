@@ -35,5 +35,4 @@ class HomeController extends Controller
         return response()->json(['message' => 'Message has been saved!']);
     }
 
-
 }

@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class OurStatistic extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'heart_storage',
+        'knowledge',
+        'missing',
+        'happiness',
+    ];
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

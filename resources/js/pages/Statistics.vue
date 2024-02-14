@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useHomeDataStore } from '../stores/homeData';
+import axios from 'axios';
 
 const store = useHomeDataStore();
 
@@ -13,7 +14,14 @@ let stats = ref({
 
 stats = computed(() => store.stats);
 
-
+const  updateStatistics = async (data) => {
+    await axios.put('/api/ourStatistics', data)
+        .then(response => {
+            console.log(response.data.message)
+        }).catch(error => {
+            console.log(error.response.data.message)
+        });
+}
 
 let heartProgress = computed(() => {
     return {
@@ -50,8 +58,11 @@ let increaseHeart = () => {
         missing: store.stats.missing,
         happiness: store.stats.happiness
     }
-    console.log(data)
+
     store.setStatistics(data)
+
+    updateStatistics(data)
+
 }
 
 let decreaseHeart = () => {
@@ -62,6 +73,7 @@ let decreaseHeart = () => {
         happiness: store.stats.happiness
     }
     store.setStatistics(data)
+    updateStatistics(data)
 }
 let increaseKnowledge = () => {
     let data = {
@@ -72,6 +84,7 @@ let increaseKnowledge = () => {
     }
     console.log(data)
     store.setStatistics(data)
+    updateStatistics(data)
 }
 
 let decreaseKnowledge = () => {
@@ -82,6 +95,7 @@ let decreaseKnowledge = () => {
         happiness: store.stats.happiness
     }
     store.setStatistics(data)
+    updateStatistics(data)
 }
 let increaseMissing = () => {
     let data = {
@@ -92,6 +106,7 @@ let increaseMissing = () => {
     }
     console.log(data)
     store.setStatistics(data)
+    updateStatistics(data)
 }
 
 let decreaseMissing = () => {
@@ -102,6 +117,7 @@ let decreaseMissing = () => {
         happiness: store.stats.happiness
     }
     store.setStatistics(data)
+    updateStatistics(data)
 }
 let increaseHappiness = () => {
     let data = {
@@ -112,6 +128,7 @@ let increaseHappiness = () => {
     }
     console.log(data)
     store.setStatistics(data)
+    updateStatistics(data)
 }
 
 let decreaseHappiness = () => {
@@ -122,6 +139,7 @@ let decreaseHappiness = () => {
         happiness: store.stats.happiness != 0 ? parseInt(store.stats.happiness) - 1 : 0,
     }
     store.setStatistics(data)
+    updateStatistics(data)
 }
 
 </script>

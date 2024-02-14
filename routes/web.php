@@ -112,7 +112,7 @@ Route::prefix('api')->group(function(){
     Route::get('/ourStatistics', [StatisticsController::class, 'index']);
     Route::get('/ourStatistics/{id}', [StatisticsController::class, 'show']);
     Route::post('/ourStatistics', [StatisticsController::class, 'store']);
-    Route::put('/ourStatistics/{id}', [StatisticsController::class, 'update']);
+    Route::put('/ourStatistics', [StatisticsController::class, 'update']);
     Route::delete('/ourStatistics/{id}', [StatisticsController::class, 'destroy']);
 
 

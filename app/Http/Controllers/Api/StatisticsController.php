@@ -45,16 +45,15 @@ class StatisticsController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $user = $request->user();
         $data = $request->all();
-        $statistics = OurStatistic::where('user_id', $user->id)->where('id', $id)->first();
-        $statistics->update($data);
+
+        $user->statistics->update($data);
 
         return response()->json([
             'message' => 'success',
-            'data' => $statistics
         ]);
     }
 

@@ -51,17 +51,14 @@ let updateLeftMessage = (event) => {
             <p>
 
 
-                Good Morning Tasnim 🌻 it's 14 February.
+                Good Morning Tasnim 🌻
                 <br>
                 <br>
-                As always, I'm here to remind you that you are loved, worthy, and enough. Today being Valentine's Day, I may
-                not be able to give you flowers or chocolates 🍫, but I can offer you my constant love and support ❤️ and this words, not just
-                today but for every single day 😇. I'm not the type of person who waits for a special occasion to express affection or
-                give gifts. I believe you deserve appreciation every second, minute, day, month and year. You
-                deserve more than just one day to be truly appreciated
+                Did you know  what id the worst think in my day ? <br>
+                It's that I can't see your smile 😔 .. but at least let me know that you are smiling and keep in your mind that I am always thinking about you 
                 <br>
                 <br>
-                I hope you have a great day ahead. Remember to take care of yourself. 
+                I hope you have a great day ahead. Remember to take care of yourself سيدة القارات والمحيطات
                 <br>
                 <br>
                 Be Happy Mi Todo ❤️❤️❤️❤️

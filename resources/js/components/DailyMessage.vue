@@ -51,17 +51,16 @@ let updateLeftMessage = (event) => {
             <p>
 
 
-                Good Morning Tasnim 🌻
+                Good Morning My weakness 🌻
                 <br>
                 <br>
-                Did you know  what id the worst think in my day ? <br>
-                It's that I can't see your smile 😔 .. but at least let me know that you are smiling and keep in your mind that I am always thinking about you 
+                    This is your daily reminder that you are amazing and unique.
+                    <br>
+                    I will be here for you no matter what, I will always be here to support. 
+                    <br>    
+                    when you are reading this, don't forget to smile ( OH!!  that smile I love the most)
                 <br>
-                <br>
-                I hope you have a great day ahead. Remember to take care of yourself سيدة القارات والمحيطات
-                <br>
-                <br>
-                Be Happy Mi Todo ❤️❤️❤️❤️
+                Be Happy Mi Luna  ❤️❤️❤️❤️
 
             </p>
 

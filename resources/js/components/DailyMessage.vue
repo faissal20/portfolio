@@ -51,16 +51,16 @@ let updateLeftMessage = (event) => {
             <p>
 
 
-                Good Morning My weakness 🌻
+                Good Morning Mi Todo 🌻
+                 <br>
                 <br>
-                <br>
-                    This is your daily reminder that you are amazing and unique.
+                    Today is Sunday you can call it mxisatiDay 😂😂😂 
                     <br>
-                    I will be here for you no matter what, I will always be here to support. 
+                    Please have some rest and enjoy your day (a lot of talking to me haha) then do your job and studies. 
                     <br>    
-                    when you are reading this, don't forget to smile ( OH!!  that smile I love the most)
+                    your are Fantastic beautifull and amazing I like you so much. 
                 <br>
-                Be Happy Mi Luna  ❤️❤️❤️❤️
+                Be Happy My princess 🌻❤️
 
             </p>
 

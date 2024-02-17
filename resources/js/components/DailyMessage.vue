@@ -54,7 +54,7 @@ let updateLeftMessage = (event) => {
                 Good Morning Mi Todo 🌻
                  <br>
                 <br>
-                    Today is Staurday you can call it Iamuersday 😂😂😂 
+                    Today is Staurday you can call it Iamursday 😂😂😂 
                     <br>
                     Please have some rest and enjoy your day (a lot of talking to me haha) then do your job and studies. 
                     <br>    

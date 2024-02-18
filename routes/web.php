@@ -121,7 +121,7 @@ Route::prefix('api')->group(function(){
 
 
 Route::get('/data', function(){
-    return statistics::all();
+    return statistics::orderBy('id', 'desc')->get();
 });
 
 

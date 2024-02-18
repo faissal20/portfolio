@@ -51,16 +51,18 @@ let updateLeftMessage = (event) => {
             <p>
 
 
-                Good Morning Mi Todo 🌻
+                Good Morning Tasnim 
                  <br>
                 <br>
-                    Today is Staurday you can call it Iamursday 😂😂😂 
+                    Today is MxisaDay (Sun Day). and I am sorry for the late message.
                     <br>
-                    Please have some rest and enjoy your day (a lot of talking to me haha) then do your job and studies. 
+                    All I want to say today is that you are the best thing happen to me. I hope I can be the best thing happen to you too. <br>
+                    And I will try my best to that for you.<br>
+                    I won't let you down. I promise. <br> 
                     <br>    
-                    your are Fantastic beautifull and amazing I like you so much. 
+                    Please take care of yourself. and remember How much you mean litarally everything to me. <br>
                 <br>
-                Be Happy My princess 🌻❤️
+                Be Happy My everything 🌻❤️
 
             </p>
 

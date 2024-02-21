@@ -56,11 +56,11 @@ let updateLeftMessage = (event) => {
                 <br>
                     First of all, I want to inform you that I will get back to sending the daily message as I used to do. <br>
                     <br>
-                    Today you have an important meeting, I hope it goes well. I want to you to know that I am supporting from here ! <br>
+                    Today you have an important meeting, I hope it goes well. I want you to know that I am supporting you from here ! <br>
                     <br>
                     And remember that you are the best, and I like so much
                     <br>    
-                    Please take care of yourself. your Cutie Patoptie  <br>
+                    Please take care of yourself. your Cutie Patotie  <br>
                 <br>
                 Be Happy My everything 🌻❤️
 

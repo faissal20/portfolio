@@ -193,7 +193,7 @@ let decreaseHappiness = () => {
                             <button class="increas" @click="increaseHappiness"><i class="fa-solid fa-plus"></i></button>
                             <button class="increas" @click="decreaseHappiness"><i class="fa-solid fa-minus"></i></button>
                         </div>
-                        <p>{{ stats.happiness === "uknown" ? stats.happiness : stats.happiness + "%" }} %</p>
+                        <p>{{ stats.happiness + "%" }} %</p>
                     </div>
                 </div>
             </div>

@@ -51,16 +51,16 @@ let updateLeftMessage = (event) => {
             <p>
 
 
-                Good Morning Tasnim 
+                Good Morning Tasnim, I am sorry for the delay !
                  <br>
                 <br>
-                    Today is MxisaDay (Sun Day). and I am sorry for the late message.
+                    First of all, I want to inform you that I will get back to sending the daily message as I used to do. <br>
                     <br>
-                    All I want to say today is that you are the best thing happen to me. I hope I can be the best thing happen to you too. <br>
-                    And I will try my best to that for you.<br>
-                    I won't let you down. I promise. <br> 
+                    Today you have an important meeting, I hope it goes well. I want to you to know that I am supporting from here ! <br>
+                    <br>
+                    And remember that you are the best, and I like so much
                     <br>    
-                    Please take care of yourself. and remember How much you mean litarally everything to me. <br>
+                    Please take care of yourself. your Cutie Patoptie  <br>
                 <br>
                 Be Happy My everything 🌻❤️
 

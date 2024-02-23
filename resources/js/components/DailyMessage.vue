@@ -51,18 +51,20 @@ let updateLeftMessage = (event) => {
             <p>
 
 
-                Good Morning Tasnim, I am sorry for the delay !
-                 <br>
+                Good Morning ملكي الجميلة 🌞❤️<br>
                 <br>
-                    First of all, I want to inform you that I will get back to sending the daily message as I used to do. <br>
-                    <br>
-                    Today you have an important meeting, I hope it goes well. I want you to know that I am supporting you from here ! <br>
-                    <br>
-                    And remember that you are the best, and I like so much
-                    <br>    
-                    Please take care of yourself. your Cutie Patotie  <br>
                 <br>
-                Be Happy My everything 🌻❤️
+                New day, the same you, beautifull gorgeous and amazing.
+                <br>
+                <br>
+                New day, and once again I am drowning in your smile and lost in your eyes ( if you are wondering from where
+                I see them, your Profile of course 😂)
+                <br>
+                <br>
+                Please keep being happy and shining my life.
+                <br>
+                <br>
+                From yours 🌻❤️
 
             </p>
 
@@ -72,9 +74,10 @@ let updateLeftMessage = (event) => {
             <form action="">
                 <div class="input">
                     <label for="message">Leave a message</label>
-                    <textarea name="message" v-model="messageleft" placeholder="Write Something beautifull !"  id="message" cols="3" rows="2">
+                    <textarea name="message" v-model="messageleft" placeholder="Write Something beautifull !" id="message"
+                        cols="3" rows="2">
                     </textarea>
-                    
+
                 </div>
                 <div class="input">
                     <button class="btn-primary effect-1" @click="submitMessage()">Send</button>

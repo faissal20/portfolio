@@ -27,6 +27,7 @@ export const useHomeDataStore = defineStore('homeData', {
                 knowledge : statistics.knowledge,
                 missing : statistics.missing,
                 happiness : statistics.happiness,
+                madeForEachOther : statistics.made_for_each_other,
             }
         }
     }

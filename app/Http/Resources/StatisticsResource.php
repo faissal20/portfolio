@@ -15,11 +15,11 @@ class StatisticsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'heartStorage' => $this->heart_storage,
+            'heart_storage' => $this->heart_storage,
             'knowledge' => $this->knowledge,
             'happiness' => $this->happiness,
             'missing' => $this->missing,
-            'madeForEachOther' => $this->made_for_each_other,
+            'made_for_each_other' => $this->made_for_each_other,
         ];
     }
 }

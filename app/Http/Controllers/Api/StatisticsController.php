@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Models\Statistics;
 use App\Models\OurStatistic;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class StatisticsController extends Controller
 {
     public function index(Request $request)
     {
         $user = $request->user();
-        $statistics = OurStatistic::where('user_id', $user->id)->get();
+        $statistics = Statistics::where('user_id', $user->id)->get();
 
         return response()->json([
             'message' => 'success',
@@ -22,7 +23,7 @@ class StatisticsController extends Controller
     public function show(Request $request, $id)
     {
         $user = $request->user();
-        $statistics = OurStatistic::where('user_id', $user->id)->where('id', $id)->first();
+        $statistics = Statistics::where('user_id', $user->id)->where('id', $id)->first();
 
         return response()->json([
             'message' => 'success',
@@ -36,7 +37,7 @@ class StatisticsController extends Controller
         $data = $request->all();
         $data['user_id'] = $user->id;
 
-        $statistics = OurStatistic::create($data);
+        $statistics = Statistics::create($data);
 
         return response()->json([
             'message' => 'success',
@@ -50,7 +51,7 @@ class StatisticsController extends Controller
         $user = $request->user();
         $data = $request->all();
 
-        $user->statistics->update($data);
+        $user->statistics()->update($data);
 
         return response()->json([
             'message' => 'success',

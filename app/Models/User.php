@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Reply;
 use App\Models\SystemLog;
+use App\Models\Statistics;
 use App\Models\DailyMessage;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -48,6 +49,10 @@ class User extends Authenticatable
 
     public function replies(){
         return $this->hasMany(Reply::class);
+    }
+
+    public function statistics(){
+        return $this->hasOne(Statistics::class);
     }
 
     public function dailyMessages(){

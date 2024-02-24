@@ -10,11 +10,12 @@ let stats = ref({
     knowledge: 0,
     missing: 0,
     happiness: 0,
+    made_for_each_other: 0
 });
 
 stats = computed(() => store.stats);
 
-const  updateStatistics = async (data) => {
+const updateStatistics = async (data) => {
     await axios.put('/api/ourStatistics', data)
         .then(response => {
             console.log(response.data.message)
@@ -22,6 +23,13 @@ const  updateStatistics = async (data) => {
             console.log(error.response.data.message)
         });
 }
+
+let madeForEachOthersProgress = computed(() => {
+    return {
+        height: store.stats.madeForEachOther + "%",
+        borderRadius: store.stats.madeForEachOther == 100 ? "7px" : "0 0 7px 7px",
+    }
+})
 
 let heartProgress = computed(() => {
     return {
@@ -56,7 +64,9 @@ let increaseHeart = () => {
         heart_storage: store.stats.heartStorage != 100 ? parseInt(store.stats.heartStorage) + 1 : 100,
         knowledge: store.stats.knowledge,
         missing: store.stats.missing,
-        happiness: store.stats.happiness
+        happiness: store.stats.happiness,
+        made_for_each_other: store.stats.madeForEachOther
+
     }
 
     store.setStatistics(data)
@@ -70,7 +80,9 @@ let decreaseHeart = () => {
         heart_storage: store.stats.heartStorage != 0 ? parseInt(store.stats.heartStorage) - 1 : 0,
         knowledge: store.stats.knowledge,
         missing: store.stats.missing,
-        happiness: store.stats.happiness
+        happiness: store.stats.happiness,
+        made_for_each_other: store.stats.madeForEachOther
+
     }
     store.setStatistics(data)
     updateStatistics(data)
@@ -80,7 +92,9 @@ let increaseKnowledge = () => {
         heart_storage: store.stats.heartStorage,
         knowledge: store.stats.knowledge != 100 ? parseInt(store.stats.knowledge) + 1 : 100,
         missing: store.stats.missing,
-        happiness: store.stats.happiness
+        happiness: store.stats.happiness,
+        made_for_each_other: store.stats.madeForEachOther
+
     }
     console.log(data)
     store.setStatistics(data)
@@ -92,7 +106,10 @@ let decreaseKnowledge = () => {
         heart_storage: store.stats.heartStorage,
         knowledge: store.stats.knowledge != 0 ? parseInt(store.stats.knowledge) - 1 : 0,
         missing: store.stats.missing,
-        happiness: store.stats.happiness
+        happiness: store.stats.happiness,
+        made_for_each_other: store.stats.madeForEachOther
+
+
     }
     store.setStatistics(data)
     updateStatistics(data)
@@ -102,7 +119,9 @@ let increaseMissing = () => {
         heart_storage: store.stats.heartStorage,
         knowledge: store.stats.knowledge,
         missing: store.stats.missing != 100 ? parseInt(store.stats.missing) + 1 : 0,
-        happiness: store.stats.happiness
+        happiness: store.stats.happiness,
+        made_for_each_other: store.stats.madeForEachOther
+
     }
     console.log(data)
     store.setStatistics(data)
@@ -114,7 +133,9 @@ let decreaseMissing = () => {
         heart_storage: store.stats.heartStorage,
         knowledge: store.stats.knowledge,
         missing: store.stats.missing != 0 ? parseInt(store.stats.missing) - 1 : 0,
-        happiness: store.stats.happiness
+        happiness: store.stats.happiness,
+        made_for_each_other: store.stats.madeForEachOther
+
     }
     store.setStatistics(data)
     updateStatistics(data)
@@ -125,6 +146,8 @@ let increaseHappiness = () => {
         knowledge: store.stats.knowledge,
         missing: store.stats.missing,
         happiness: store.stats.happiness != 100 ? parseInt(store.stats.happiness) + 1 : 0,
+        made_for_each_other: store.stats.madeForEachOther
+
     }
     console.log(data)
     store.setStatistics(data)
@@ -137,14 +160,28 @@ let decreaseHappiness = () => {
         knowledge: store.stats.knowledge,
         missing: store.stats.missing,
         happiness: store.stats.happiness != 0 ? parseInt(store.stats.happiness) - 1 : 0,
+        made_for_each_other: store.stats.madeForEachOther
     }
+    store.setStatistics(data)
+    updateStatistics(data)
+}
+
+let increaseMadeForEachOthers = () => {
+    let data = {
+        heart_storage: store.stats.heartStorage,
+        knowledge: store.stats.knowledge,
+        missing: store.stats.missing,
+        happiness: store.stats.happiness,
+        made_for_each_other : store.stats.madeForEachOther != 100 ? parseInt(store.stats.madeForEachOther) + 1 : 100
+    }
+    console.log(data)
     store.setStatistics(data)
     updateStatistics(data)
 }
 
 </script>
 <template>
-    <div>
+    <div class="statistics">
         <h3>
             Statistics
         </h3>
@@ -196,6 +233,18 @@ let decreaseHappiness = () => {
                         <p>{{ stats.happiness + "%" }}</p>
                     </div>
                 </div>
+                <!-- made for each others -->
+                <div class="state-card madeForEachOther">
+                    <div class="progress" :style="madeForEachOthersProgress"></div>
+                    <h4>made for each others</h4>
+                    <div class="footer">
+                        <div class="control">
+                            <button class="increas" @click="increaseMadeForEachOthers()"><i class="fa-solid fa-plus"></i></button>
+                            <button class="increas" @click="()=> {}"><i class="fa-solid fa-minus"></i></button>
+                        </div>
+                        <p>{{ stats.madeForEachOther + "%" }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -205,7 +254,8 @@ let decreaseHappiness = () => {
     margin-top: 1rem;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
@@ -215,6 +265,7 @@ let decreaseHappiness = () => {
     border: 1px solid #00000010;
     border-radius: 7px;
     box-shadow: 0 0 10px #00000010;
+    backdrop-filter: saturate(180%) blur(20px);
     position: relative;
 }
 
@@ -245,6 +296,11 @@ let decreaseHappiness = () => {
 .happiness .progress {
     background-color: #00ff0070;
     box-shadow: 0 0 10px #00ff0070;
+}
+
+.madeForEachOther .progress {
+    background-color: #ffae0070;
+    box-shadow: 0 0 10px #ffae0070;
 }
 
 .stat-cards h4 {

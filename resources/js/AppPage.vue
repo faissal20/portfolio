@@ -18,7 +18,7 @@
 
 <template>
     <div class="app">
-        <side class="side-navbar">
+        <div class="side-navbar">
 
             <ul>
                 <li>
@@ -29,7 +29,7 @@
                     </Router-link>
                 </li>
             </ul>
-        </side>
+        </div>
         <div class="page-content">
             <router-view>
 

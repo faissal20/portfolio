@@ -1,13 +1,15 @@
 <?php
 
-use App\Http\Controllers\Api\HomeController;
-use App\Http\Controllers\Api\NotificationsController;
-use App\Http\Controllers\Api\StatisticsController;
-use App\Models\statistics;
 use App\Models\User;
+use App\Models\SystemLog;
+use App\Models\statistics;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\ReplyController;
+use App\Http\Controllers\Api\StatisticsController;
+use App\Http\Controllers\Api\NotificationsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    return view('welcome');
+    return redirect('/home');
 
 })->name('welcome');
 
@@ -62,12 +64,11 @@ Route::middleware('guest')->group(function () {
         $ip = $request->ip();
         $user_agent = $request->header('User-Agent');
     
-        statistics::forceCreate([
-            'action_type' => 'login',
-            'action_by' => $user->username,
-            'action_data' => json_encode(['ip' => $ip, 'user_agent' => $user_agent]),
+        $user->logs()->create([
+            'type' => 'leave_message',
+            'data' => json_encode(['ip' => $ip, 'user_agent' => $user_agent])
         ]);
-    
+
         return redirect('/home');
         
     })->name('login');
@@ -84,14 +85,16 @@ Route::middleware('auth')->group(function () {
 
         $ip = $request->ip();
         $user_agent = $request->header('User-Agent');
-    
-        statistics::forceCreate([
-            'action_type' => 'logout',
-            'action_by' => auth()->user()->username,
-            'action_data' => json_encode(['ip' => $ip, 'user_agent' => $user_agent])
+
+        $request->user()->logs()->create([
+            'type' => 'logout',
+            'data' => json_encode(['ip' => $ip, 'user_agent' => $user_agent]),
         ]);
 
+
         auth()->logout();
+
+        $request->session()->invalidate();
 
         return redirect('/');
     })->name('logout');
@@ -101,7 +104,7 @@ Route::middleware('auth')->group(function () {
 Route::prefix('api')->group(function(){
 
     Route::get('/home', [HomeController::class, 'index']);
-    Route::post('/home/leaveMessage', [HomeController::class, 'leaveMessage']);
+    Route::post('/home/reply/{daily_message}', [ReplyController::class, 'store']);
 
     Route::get('/notifications', [NotificationsController::class, 'index']);
     Route::get('/notifications/{id}', [NotificationsController::class, 'show']);
@@ -121,7 +124,7 @@ Route::prefix('api')->group(function(){
 
 
 Route::get('/data', function(){
-    return statistics::orderBy('id', 'desc')->get();
+    return SystemLog::with('user:id,username')->get();
 });
 
 

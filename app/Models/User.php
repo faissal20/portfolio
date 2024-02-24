@@ -3,10 +3,13 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Reply;
+use App\Models\SystemLog;
+use App\Models\DailyMessage;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -43,9 +46,14 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function replies(){
+        return $this->hasMany(Reply::class);
+    }
 
-    public function statistics()
-    {
-        return $this->hasOne(OurStatistic::class);
+    public function dailyMessages(){
+        return $this->hasMany(DailyMessage::class, 'user_id');
+    }
+    public function logs(){
+        return $this->hasMany(SystemLog::class, 'user_id');
     }
 }

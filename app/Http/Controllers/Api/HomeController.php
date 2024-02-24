@@ -2,37 +2,24 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\statistics;
 use App\Models\DailyMessage;
-use App\Models\OurStatistic;
+use App\Models\Statistics;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DailyMessageResource;
+use App\Http\Resources\StatisticsResource;
+use App\Models\SystemLog;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $messages = DailyMessage::where('date', now()->format('Y-m-d'))->get();
-
+        $statistics = Statistics::where('user_id', $request->user()->id )->first();
         return response()->json([
-            'dailyMessage' => $messages,
-            'statistics' => OurStatistic::where('user_id', auth()->user()->id)->first(),
+            'dailyMessage' => DailyMessageResource::collection($messages),
+            'statistics' => StatisticsResource::make($statistics)
         ]);
-    }
-
-    public function leaveMessage(Request $request)
-    {
-        $request->validate([
-            'message' => 'required|string'
-        ]);
-
-        statistics::forceCreate([
-            'action_type' => 'leave_message',
-            'action_by' => auth()->user()->username,
-            'action_data' => json_encode(['message' => $request->message])
-        ]);
-
-        return response()->json(['message' => 'Message has been saved!']);
     }
 
 }

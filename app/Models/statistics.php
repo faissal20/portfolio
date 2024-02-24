@@ -5,26 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class statistics extends Model
+class Statistics extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'action_name',
-        'action_by',
-        'action_data'
+        'user_id',
+        'heart_storage',
+        'knowledge',
+        'missing',
+        'happiness',
     ];
 
-
-    protected $casts = [
-        'action_data' => 'array'
-    ];
-
-
-    public function getActionDataAttribute($value)
+    public function user()
     {
-        return json_decode($value);
+        return $this->belongsTo(User::class);
     }
-
 
 }

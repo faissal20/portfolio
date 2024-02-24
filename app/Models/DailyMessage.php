@@ -16,7 +16,7 @@ class DailyMessage extends Model
         'seen_at'
     ];
 
-    public function reply()
+    public function replies()
     {
         return $this->hasMany(Reply::class) ;
     }

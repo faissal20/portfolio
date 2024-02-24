@@ -19,7 +19,17 @@ dailyMessages = computed(() => homeStore.messages);
         <div v-for="message in dailyMessages" :key="message.id">
             <Message :message="message" />
         </div>
-        
+        <p>
+            <p>
+                Good morning My beautfull Queen.
+                <br>
+                <br>
+                It's Saturday, the weekend is here. enjoy your day and have fun. I will be here any time you need me. 
+                <br>
+                <br>
+                
+            </p>
+        </p>
         
     </div>
 </template>

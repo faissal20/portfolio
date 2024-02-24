@@ -65,7 +65,7 @@ Route::middleware('guest')->group(function () {
         $user_agent = $request->header('User-Agent');
     
         $user->logs()->create([
-            'type' => 'leave_message',
+            'type' => 'login',
             'data' => json_encode(['ip' => $ip, 'user_agent' => $user_agent])
         ]);
 

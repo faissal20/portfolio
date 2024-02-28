@@ -7,12 +7,13 @@
     align-items: flex-start;
     flex-wrap: wrap;
 }
+
 @media screen and (max-width: 768px) {
     .app {
         flex-direction: column;
         align-items: stretch;
     }
-    
+
 }
 </style>
 
@@ -22,7 +23,8 @@
 
             <ul>
                 <li>
-                    <Router-link to="/"> <i class="fa-solid fa-house"></i><span>Home</span> </Router-link>
+                    <Router-link to="/"> <i class="fa-solid fa-house" :style="{ }"></i><span>Home</span>
+                    </Router-link>
                 </li>
                 <li>
                     <Router-link to="/statistics"> <i class="fa-solid fa-chart-bar"></i><span>Statistics</span>
@@ -40,24 +42,62 @@
 
 <script  setup>
 import axios from 'axios';
-import { useHomeDataStore } from './stores/homeData';
+import { useMyStatisticsStore } from './stores/myStatistics';
+import { useStatisticsStore } from './stores/statistics';
+import { useDailyMessagesStore } from './stores/dailyMessages';
 import { onMounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import { ref} from 'vue';
 
-const homeStore = useHomeDataStore();
+const statisticsStore = useStatisticsStore();
+const myStatisticsStore = useMyStatisticsStore();
+const messagesStore = useDailyMessagesStore();
 
-const getData = async () => {
 
+
+const getDailyMessages = async () => {
     let response = await axios.get('/api/home');
     return response.data;
 }
 
+const getStatistics = async () => {
+    let response = await axios.get('/api/statistic');
+    return response.data;
+}
+
+const getMyStatistcis = async () => {
+    let response = await axios.get('/api/statistics/faissal');
+    return response.data;
+}
+
+
+
 onMounted(() => {
-    let data = getData();
-    data.then(data => {
-        let messages = data.dailyMessage;
-        let ourStatistics = data.statistics;
-        homeStore.setStatistics(ourStatistics);
-        homeStore.setDailyMessages(messages);
-    })
+    let dailyMessages = getDailyMessages();
+    let myStatistics = getMyStatistcis();
+    let statistics = getStatistics();
+
+
+    dailyMessages.then(data => {
+        messagesStore.setDailyMessages(data.data);
+    });
+
+    myStatistics.then(data => {
+        myStatisticsStore.setHeartStorageValue(data.data.heartStorage);
+        myStatisticsStore.setKnowledgeValue(data.data.knowledge);
+        myStatisticsStore.setHappinessValue(data.data.happiness);
+        myStatisticsStore.setMissingValue(data.data.missing);
+        myStatisticsStore.setMadeForEachOtherValue(data.data.madeForEachOther);
+    });
+
+    statistics.then(data => {
+        console.log(data.data);
+        statisticsStore.setStatistics(data.data);
+        statisticsStore.setKnowledge(data.data.knowledge);
+        statisticsStore.setHappiness(data.data.happiness);
+        statisticsStore.setMissing(data.data.missing);
+        statisticsStore.setMadeForEachOther(data.data.madeForEachOther);
+
+    });
 })
 </script>

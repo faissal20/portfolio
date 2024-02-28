@@ -1,182 +1,37 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { useHomeDataStore } from '../stores/homeData';
+import { useStatisticsStore } from '../stores/statistics';
 import axios from 'axios';
 
-const store = useHomeDataStore();
+const store = useStatisticsStore();
 
-let stats = ref({
-    heartStorage: 0,
-    knowledge: 0,
-    missing: 0,
-    happiness: 0,
-    made_for_each_other: 0
-});
+let heartStorage = computed(() => store.heartStorage);
+let knowledge = computed(() => store.knowledge);
+let happiness = computed(() => store.happiness);
+let missing = computed(() => store.missing);
+let madeForEachOther = computed(() => store.madeForEachOther);
 
-stats = computed(() => store.stats);
+let heartProgress = computed(() => ({ height: `${store.heartStorage}%` }));
+let knowledgeProgress = computed(() => ({ height: `${store.knowledge}%` }));
+let happinessProgress = computed(() => ({ height: `${store.happiness}%` }));
+let missingProgress = computed(() => ({ height: `${store.missing}%` }));
+let madeForEachOthersProgress = computed(() => ({ height: `${store.madeForEachOther}%` }));
 
-const updateStatistics = async (data) => {
-    await axios.put('/api/ourStatistics', data)
-        .then(response => {
-            console.log(response.data.message)
-        }).catch(error => {
-            console.log(error.response.data.message)
-        });
-}
+var loading = ref(false)
 
-let madeForEachOthersProgress = computed(() => {
-    return {
-        height: store.stats.madeForEachOther + "%",
-        borderRadius: store.stats.madeForEachOther == 100 ? "7px" : "0 0 7px 7px",
-    }
-})
 
-let heartProgress = computed(() => {
-    return {
-        height: store.stats.heartStorage + "%",
-        borderRadius: store.stats.heartStorage == 100 ? "7px" : "0 0 7px 7px",
-    }
-})
-
-let knowledgeProgress = computed(() => {
-    return {
-        height: store.stats.knowledge + "%",
-        borderRadius: store.stats.knowledge == 100 ? "7px" : "0 0 7px 7px",
-    }
-})
-
-let missingProgress = computed(() => {
-    return {
-        height: store.stats.missing + "%",
-        borderRadius: store.stats.missing == 100 ? "7px" : "0 0 7px 7px",
-    }
-})
-
-let happinessProgress = computed(() => {
-    return {
-        height: store.stats.happiness + "%",
-        borderRadius: store.stats.happiness == 100 ? "7px" : "0 0 7px 7px",
-    }
-})
-
-let increaseHeart = () => {
+let  save = async () => {
     let data = {
-        heart_storage: store.stats.heartStorage != 100 ? parseInt(store.stats.heartStorage) + 1 : 100,
-        knowledge: store.stats.knowledge,
-        missing: store.stats.missing,
-        happiness: store.stats.happiness,
-        made_for_each_other: store.stats.madeForEachOther
-
+        heartStorage: heartStorage.value,
+        knowledge: knowledge.value,
+        happiness: happiness.value,
+        missing: missing.value,
+        madeForEachOther: madeForEachOther.value,
     }
+    
+    loading.value = true
+    await axios.put('api/statistics', data).then((response) => loading.value = false ) 
 
-    store.setStatistics(data)
-
-    updateStatistics(data)
-
-}
-
-let decreaseHeart = () => {
-    let data = {
-        heart_storage: store.stats.heartStorage != 0 ? parseInt(store.stats.heartStorage) - 1 : 0,
-        knowledge: store.stats.knowledge,
-        missing: store.stats.missing,
-        happiness: store.stats.happiness,
-        made_for_each_other: store.stats.madeForEachOther
-
-    }
-    store.setStatistics(data)
-    updateStatistics(data)
-}
-let increaseKnowledge = () => {
-    let data = {
-        heart_storage: store.stats.heartStorage,
-        knowledge: store.stats.knowledge != 100 ? parseInt(store.stats.knowledge) + 1 : 100,
-        missing: store.stats.missing,
-        happiness: store.stats.happiness,
-        made_for_each_other: store.stats.madeForEachOther
-
-    }
-    console.log(data)
-    store.setStatistics(data)
-    updateStatistics(data)
-}
-
-let decreaseKnowledge = () => {
-    let data = {
-        heart_storage: store.stats.heartStorage,
-        knowledge: store.stats.knowledge != 0 ? parseInt(store.stats.knowledge) - 1 : 0,
-        missing: store.stats.missing,
-        happiness: store.stats.happiness,
-        made_for_each_other: store.stats.madeForEachOther
-
-
-    }
-    store.setStatistics(data)
-    updateStatistics(data)
-}
-let increaseMissing = () => {
-    let data = {
-        heart_storage: store.stats.heartStorage,
-        knowledge: store.stats.knowledge,
-        missing: store.stats.missing != 100 ? parseInt(store.stats.missing) + 1 : 0,
-        happiness: store.stats.happiness,
-        made_for_each_other: store.stats.madeForEachOther
-
-    }
-    console.log(data)
-    store.setStatistics(data)
-    updateStatistics(data)
-}
-
-let decreaseMissing = () => {
-    let data = {
-        heart_storage: store.stats.heartStorage,
-        knowledge: store.stats.knowledge,
-        missing: store.stats.missing != 0 ? parseInt(store.stats.missing) - 1 : 0,
-        happiness: store.stats.happiness,
-        made_for_each_other: store.stats.madeForEachOther
-
-    }
-    store.setStatistics(data)
-    updateStatistics(data)
-}
-let increaseHappiness = () => {
-    let data = {
-        heart_storage: store.stats.heartStorage,
-        knowledge: store.stats.knowledge,
-        missing: store.stats.missing,
-        happiness: store.stats.happiness != 100 ? parseInt(store.stats.happiness) + 1 : 0,
-        made_for_each_other: store.stats.madeForEachOther
-
-    }
-    console.log(data)
-    store.setStatistics(data)
-    updateStatistics(data)
-}
-
-let decreaseHappiness = () => {
-    let data = {
-        heart_storage: store.stats.heartStorage,
-        knowledge: store.stats.knowledge,
-        missing: store.stats.missing,
-        happiness: store.stats.happiness != 0 ? parseInt(store.stats.happiness) - 1 : 0,
-        made_for_each_other: store.stats.madeForEachOther
-    }
-    store.setStatistics(data)
-    updateStatistics(data)
-}
-
-let increaseMadeForEachOthers = () => {
-    let data = {
-        heart_storage: store.stats.heartStorage,
-        knowledge: store.stats.knowledge,
-        missing: store.stats.missing,
-        happiness: store.stats.happiness,
-        made_for_each_other : store.stats.madeForEachOther != 100 ? parseInt(store.stats.madeForEachOther) + 1 : 100
-    }
-    console.log(data)
-    store.setStatistics(data)
-    updateStatistics(data)
 }
 
 </script>
@@ -187,39 +42,47 @@ let increaseMadeForEachOthers = () => {
         </h3>
         <div>
             <div class="stat-cards">
-                <div class="state-card heart">
-                    <div class="progress" :style="heartProgress">
-
-                    </div>
+                <div v-if="heartStorage != null" class="state-card heart">
+                    <div class="progress" :style="heartProgress"></div>
                     <h4>Heart Storage</h4>
                     <div class="footer">
                         <div class="control">
-                            <button class="increas" @click="increaseHeart()"><i class="fa-solid fa-plus"></i></button>
-                            <button class="increas" @click="decreaseHeart()"><i class="fa-solid fa-minus"></i></button>
+                            <button :disabled="(store.heartStorage == 100)" class="increas"
+                                @click="store.setHeartStorage(heartStorage + 5)"><i class="fa-solid fa-plus"></i></button>
+                            <button class="increas" @click="store.setHeartStorage(heartStorage - 5)"><i
+                                    class="fa-solid fa-minus"></i></button>
                         </div>
-                        <p>{{ stats.heartStorage }} %</p>
+                        <p>{{ heartStorage }} %</p>
                     </div>
                 </div>
-                <div class="state-card knowledge">
+                <div v-else>
+                    <p>Loading...</p>
+                </div>
+                <div v-if="knowledgeProgress != null" class="state-card knowledge">
                     <div class="progress" :style="knowledgeProgress"></div>
                     <h4>Knowledge</h4>
                     <div class="footer">
                         <div class="control">
-                            <button class="increas" @click="increaseKnowledge()"><i class="fa-solid fa-plus"></i></button>
-                            <button class="increas" @click="decreaseKnowledge()"><i class="fa-solid fa-minus"></i></button>
+                            <button class="increas" @click="store.setKnowledge(store.knowledge + 5)"><i
+                                    class="fa-solid fa-plus"></i></button>
+                            <button class="increas" @click="store.setKnowledge(store.knowledge - 5)"><i
+                                    class="fa-solid fa-minus"></i></button>
                         </div>
-                        <p>{{ stats.knowledge }} %</p>
+                        <p>{{ knowledge }} %</p>
                     </div>
                 </div>
+
                 <div class="state-card missing">
                     <div class="progress" :style="missingProgress"></div>
                     <h4>Missing</h4>
                     <div class="footer">
                         <div class="control">
-                            <button class="increas" @click="increaseMissing"><i class="fa-solid fa-plus"></i></button>
-                            <button class="increas" @click="decreaseMissing"><i class="fa-solid fa-minus"></i></button>
+                            <button class="increas" @click="store.setMissing(store.missing + 5)"><i
+                                    class="fa-solid fa-plus"></i></button>
+                            <button class="increas" @click="store.setMissing(store.missing - 5)"><i
+                                    class="fa-solid fa-minus"></i></button>
                         </div>
-                        <p>{{ stats.missing }} %</p>
+                        <p>{{ missing }} %</p>
                     </div>
                 </div>
                 <div class="state-card happiness">
@@ -227,25 +90,33 @@ let increaseMadeForEachOthers = () => {
                     <h4>Happiness</h4>
                     <div class="footer">
                         <div class="control">
-                            <button class="increas" @click="increaseHappiness"><i class="fa-solid fa-plus"></i></button>
-                            <button class="increas" @click="decreaseHappiness"><i class="fa-solid fa-minus"></i></button>
+                            <button class="increas" @click="store.setHappiness(store.happiness + 5)"><i
+                                    class="fa-solid fa-plus"></i></button>
+                            <button class="increas" @click="store.setHappiness(store.happiness - 5)"><i
+                                    class="fa-solid fa-minus"></i></button>
                         </div>
-                        <p>{{ stats.happiness + "%" }}</p>
+                        <p>{{ happiness + "%" }}</p>
                     </div>
                 </div>
-                <!-- made for each others -->
                 <div class="state-card madeForEachOther">
                     <div class="progress" :style="madeForEachOthersProgress"></div>
                     <h4>made for each others</h4>
                     <div class="footer">
                         <div class="control">
-                            <button class="increas" @click="increaseMadeForEachOthers()"><i class="fa-solid fa-plus"></i></button>
-                            <button class="increas" @click="()=> {}"><i class="fa-solid fa-minus"></i></button>
+                            <button class="increas" @click="store.setMadeForEachOther(store.madeForEachOther + 5)"><i
+                                    class="fa-solid fa-plus"></i></button>
+                            <button class="increas" @click="store.setMadeForEachOther(store.madeForEachOther - 5)"><i
+                                    class="fa-solid fa-minus"></i></button>
                         </div>
-                        <p>{{ stats.madeForEachOther + "%" }}</p>
+                        <p>{{ madeForEachOther + "%" }}</p>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="save">
+            <button @click="save()" class="btn-primary">
+                {{ loading == true  ? "Saving.." : "Save" }}
+            </button>
         </div>
     </div>
 </template>
@@ -253,9 +124,10 @@ let increaseMadeForEachOthers = () => {
 .stat-cards {
     margin-top: 1rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: stretch;
     flex-wrap: wrap;
+    flex-basis: 30%;
     gap: 1rem;
 }
 
@@ -267,6 +139,7 @@ let increaseMadeForEachOthers = () => {
     box-shadow: 0 0 10px #00000010;
     backdrop-filter: saturate(180%) blur(20px);
     position: relative;
+    overflow: hidden;
 }
 
 .progress {
@@ -329,4 +202,14 @@ let increaseMadeForEachOthers = () => {
 .control button:hover {
     background-color: #00000020;
 }
-</style>
+
+.control button:disabled {
+    cursor: not-allowed;
+}
+
+.save {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}</style>

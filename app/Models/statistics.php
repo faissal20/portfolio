@@ -15,6 +15,7 @@ class Statistics extends Model
         'knowledge',
         'missing',
         'happiness',
+        'made_for_each_other'
     ];
 
     public function user() 

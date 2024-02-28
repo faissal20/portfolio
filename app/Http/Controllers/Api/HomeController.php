@@ -15,11 +15,9 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $messages = DailyMessage::where('date', now()->format('Y-m-d'))->get();
-        $statistics = Statistics::where('user_id', $request->user()->id )->first();
-        return response()->json([
-            'dailyMessage' => DailyMessageResource::collection($messages),
-            'statistics' => StatisticsResource::make($statistics)
-        ]);
+
+        return DailyMessageResource::collection($messages);
+
     }
 
 }

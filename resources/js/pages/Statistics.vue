@@ -127,13 +127,13 @@ let  save = async () => {
     justify-content: flex-start;
     align-items: stretch;
     flex-wrap: wrap;
-    flex-basis: 30%;
     gap: 1rem;
 }
 
 .state-card {
     flex: 1;
     padding: 1rem;
+    flex-basis: 35%;
     border: 1px solid #00000010;
     border-radius: 7px;
     box-shadow: 0 0 10px #00000010;
@@ -184,10 +184,13 @@ let  save = async () => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: .5rem;
 }
 
 .control {
     display: flex;
+    flex-wrap: wrap;
     gap: 2px;
 }
 

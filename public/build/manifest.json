@@ -6,14 +6,14 @@
   },
   "resources/js/app.js": {
     "css": [
-      "assets/app-K-8V8M1D.css"
+      "assets/app-AVwq4wIc.css"
     ],
-    "file": "assets/app-bfJbZyTq.js",
+    "file": "assets/app-nX0bZsO1.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-Fe41-1gr.css",
+    "file": "assets/app-9vf22eZz.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   }

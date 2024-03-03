@@ -85,4 +85,5 @@ let submitMessage = async () => {
     100% {
         transform: scale(1);
     }
-}</style>
+}
+</style>

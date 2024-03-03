@@ -194,10 +194,14 @@ main {
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 2rem;
+    @media screen and (max-width: 768px){
+        flex-direction: column;
+        align-items: stretch;
+    }
 }
 
 .daily-message{
-    flex : 2;
+    flex : 3;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -325,11 +329,6 @@ main {
 
 .side-statistics {
     flex: 1;
-
-    @media screen and (max-width: 768px) {
-        display: none;
-    }
-    
 
 }
 

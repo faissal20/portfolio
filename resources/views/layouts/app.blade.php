@@ -15,6 +15,12 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js'])
+
+    <script>
+        
+        window.user = {!! json_encode( auth()->user(),
+        ) !!};
+    </script>
 </head>
 
 <body style="background-image: url('{{ asset('/assets/background.jpg') }}'); @auth backdrop-filter: blur(20px);  @endauth">

@@ -30,6 +30,10 @@
                     <Router-link to="/statistics"> <i class="fa-solid fa-chart-bar"></i><span>Statistics</span>
                     </Router-link>
                 </li>
+                <li v-if="userRole === 'admin'">
+                    <Router-link to="/logs"> <i class="fa-solid fa-users"></i><span>Logs</span>
+                    </Router-link>
+                </li>
             </ul>
         </div>
         <div class="page-content">
@@ -45,6 +49,7 @@ import axios from 'axios';
 import { useMyStatisticsStore } from './stores/myStatistics';
 import { useStatisticsStore } from './stores/statistics';
 import { useDailyMessagesStore } from './stores/dailyMessages';
+import { useUserStore } from './stores/user';
 import { onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { ref} from 'vue';
@@ -52,8 +57,9 @@ import { ref} from 'vue';
 const statisticsStore = useStatisticsStore();
 const myStatisticsStore = useMyStatisticsStore();
 const messagesStore = useDailyMessagesStore();
+const userStore = useUserStore();
 
-
+const userRole = userStore.role;
 
 const getDailyMessages = async () => {
     let response = await axios.get('/api/home');

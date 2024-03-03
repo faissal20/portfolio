@@ -22,13 +22,14 @@ const app = createApp({});
 import AppPage from './AppPage.vue';
 import Home from './pages/Home.vue';
 import Statistics from './pages/Statistics.vue';
-
+import Logs from './pages/Logs.vue';
+import { useUserStore } from './stores/user';
 
 
 app.component('app-page', AppPage);
 app.component('home-page', Home);
 app.component('statistics-page', Statistics);
-
+app.component('logs-page', Logs);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -50,6 +51,7 @@ app.component('statistics-page', Statistics);
 const routes = [
     { path: '/', component: Home },
     { path: '/statistics', component: Statistics },
+    { path : '/logs', component : Logs }
 ]
 
 const router = createRouter({
@@ -64,5 +66,8 @@ const pinia = createPinia()
 app.use(router)
 app.use(pinia)
 
+const userStore = useUserStore()
+
+userStore.setUser(window.user);
 
 app.mount('#app');

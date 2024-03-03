@@ -20,6 +20,7 @@ class LogResource extends JsonResource
             'data' => $this->data,
             'type' => $this->type,
             'user' => new UserResource($this->user),
+            'created' => $this->created_at->DiffForHumans(),
         ];
     }
 }

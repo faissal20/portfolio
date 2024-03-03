@@ -5,6 +5,7 @@ use App\Models\SystemLog;
 use App\Models\statistics;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Services\LogServices;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\ReplyController;
@@ -61,13 +62,7 @@ Route::middleware('guest')->group(function () {
 
         auth()->login($user, true);
 
-        $ip = $request->ip();
-        $user_agent = $request->header('User-Agent');
-    
-        $user->logs()->create([
-            'type' => 'login',
-            'data' => json_encode(['ip' => $ip, 'user_agent' => $user_agent])
-        ]);
+        LogServices::store($request, 'login', [], $user);
 
         return redirect('/home');
         
@@ -82,20 +77,9 @@ Route::middleware('auth')->group(function () {
     })->name('home');
 
     Route::post('/logout', function (Request $request) {
-
-        $ip = $request->ip();
-        $user_agent = $request->header('User-Agent');
-
-        $request->user()->logs()->create([
-            'type' => 'logout',
-            'data' => json_encode(['ip' => $ip, 'user_agent' => $user_agent]),
-        ]);
-
-
+        LogServices::store($request, 'logout', [],null);
         auth()->logout();
-
         $request->session()->invalidate();
-
         return redirect('/');
     })->name('logout');
 });
@@ -107,6 +91,7 @@ Route::prefix('api')->group(function(){
     Route::post('/home/reply/{daily_message}', [ReplyController::class, 'store']);
 
     Route::get('/notifications', [NotificationsController::class, 'index']);
+    Route::get('/notifications/logs', [NotificationsController::class, 'showLogs']);
     Route::get('/notifications/{id}', [NotificationsController::class, 'show']);
     Route::post('/notifications', [NotificationsController::class, 'store']);
     Route::put('/notifications/{id}', [NotificationsController::class, 'update']);

@@ -16,6 +16,10 @@ class SystemLog extends Model
         'user_id'
     ];
 
+    protected $casts = [
+        'data' => 'array'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

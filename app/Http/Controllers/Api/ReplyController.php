@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\DailyMessage;
+use App\Services\LogServices;
 use Illuminate\Http\Request;
 
 class ReplyController extends Controller
@@ -20,6 +21,8 @@ class ReplyController extends Controller
             'user_id' => $request->user()->id,
         ]);
 
+        LogServices::store($request, 'reply', ['message' => $daily_message->id] );
+        
         return response()->json(['message' => 'Reply has been saved!']);
     }
 }

@@ -62,7 +62,6 @@ let madeForEachOthersProgress = computed(() => ({ width: `${store.madeForEachOth
                     <div  class="meter">
                         <transition name="progress">
                             <span v-if="missing > 0" :style="missingProgress"></span>
-                            <span v-else style="width: 1%"></span>
                         </transition>
                         <p>{{ missing }}%</p>
                     </div>

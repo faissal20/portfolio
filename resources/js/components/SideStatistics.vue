@@ -157,15 +157,15 @@ let madeForEachOthersProgress = computed(() => ({ width: `${store.madeForEachOth
 }
 
 .progress-enter-active {
-    animation: bounce-in 2s;
+    animation: progress 2s;
 }
 
 .progress-leave-active {
     
-    animation: bounce-in 2s reverse;
+    animation: progress 2s reverse;
 }
 
-@keyframes bounce-in {
+@keyframes progress {
     0% {
         transform-origin: 0% 100% ;
         transform: scaleX(0)

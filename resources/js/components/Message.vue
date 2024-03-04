@@ -43,17 +43,14 @@ let submitMessage = async () => {
         <button class="show-reply" @click="show()"><i class="fa-solid fa-reply"></i></button>
     </div>
 
-    <transition name="bounce">
-        <div v-if="showReplyForm">
-            <div class="reply">
-
-                <textarea name="message" v-model="reply" placeholder="Write Something beautifull !" id="message" cols="3"
-                    rows="2">
+    <transition name="toggel-reply">
+        <div v-if="showReplyForm" class="reply">
+            <textarea name="message" v-model="reply" placeholder="Write Something beautifull !" id="message" cols="3"
+                rows="2">
                 </textarea>
-                <div class="options">
-                    <button class="" @click="submitMessage()"><i class="fa-solid fa-share"></i></button>
-                    <button class="" @click="close()"><i class="fa-solid fa-xmark"></i></button>
-                </div>
+            <div class="options">
+                <button class="" @click="submitMessage()"><i class="fa-solid fa-share"></i></button>
+                <button class="" @click="close()"><i class="fa-solid fa-xmark"></i></button>
             </div>
         </div>
     </transition>
@@ -65,25 +62,27 @@ let submitMessage = async () => {
     padding: 2rem 0 0 0;
 }
 
-.bounce-enter-active {
-    animation: bounce-in 0.5s;
+.toggel-reply-enter-active {
+    animation: fade-down 0.5s;
 }
 
-.bounce-leave-active {
-    animation: bounce-in 0.5s reverse;
+.toggel-reply-leave-active {
+    animation: fade-down 0.5s reverse;
 }
 
-@keyframes bounce-in {
+@keyframes fade-down {
     0% {
-        transform: scale(0);
+        opacity: 0;
+        transform: translateY(-50px);
     }
-
     50% {
-        transform: scale(1.01);
+        opacity: .3;
+        transform: translateY(10px);
     }
 
     100% {
-        transform: scale(1);
+        opacity: 1;
+        transform: translateY(0px);
     }
 }
 </style>

@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\ReplyController;
 use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\Api\NotificationsController;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,7 @@ Route::middleware('auth')->group(function () {
 Route::prefix('api')->group(function(){
 
     Route::get('/home', [HomeController::class, 'index']);
+    Route::get('/replies', [ReplyController::class, 'index'] );
     Route::post('/home/reply/{daily_message}', [ReplyController::class, 'store']);
 
     Route::get('/notifications', [NotificationsController::class, 'index']);
@@ -109,9 +111,12 @@ Route::prefix('api')->group(function(){
 
 
 
-Route::get('/data', function(){
-    return SystemLog::with('user:id,username')->get();
-});
+Route::get('/data', function(Request $request){
+    if($request->user()->role == 'admin')
+        return SystemLog::with('user:id,username')->get();
+    else
+        throw new HttpResponseException(response()->json(['error' => 'you are not an admin'],200));
+})->middleware('auth');
 
 
 // Auth::routes();

@@ -14,7 +14,7 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $messages = DailyMessage::where('date', now()->format('Y-m-d'))->get();
+        $messages = DailyMessage::where('seen', false )->get();
 
         return DailyMessageResource::collection($messages);
 

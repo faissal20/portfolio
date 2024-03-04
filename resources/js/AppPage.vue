@@ -13,7 +13,6 @@
         flex-direction: column;
         align-items: stretch;
     }
-
 }
 </style>
 
@@ -51,8 +50,6 @@ import { useStatisticsStore } from './stores/statistics';
 import { useDailyMessagesStore } from './stores/dailyMessages';
 import { useUserStore } from './stores/user';
 import { onMounted } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
-import { ref} from 'vue';
 
 const statisticsStore = useStatisticsStore();
 const myStatisticsStore = useMyStatisticsStore();

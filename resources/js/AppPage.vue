@@ -33,6 +33,10 @@
                     <Router-link to="/logs"> <i class="fa-solid fa-users"></i><span>Logs</span>
                     </Router-link>
                 </li>
+                <li v-if="userRole === 'admin'">
+                    <Router-link to="/movies"> <i class="fa-solid fa-film"></i><span>Movies Series</span>
+                    </Router-link>
+                </li>
             </ul>
         </div>
         <div class="page-content">

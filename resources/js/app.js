@@ -7,7 +7,9 @@
 import './bootstrap';
 import { createApp } from 'vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
-import { createPinia } from 'pinia'
+import { createPinia } from 'pinia';
+import { useUserStore } from './stores/user';
+
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
@@ -23,13 +25,14 @@ import AppPage from './AppPage.vue';
 import Home from './pages/Home.vue';
 import Statistics from './pages/Statistics.vue';
 import Logs from './pages/Logs.vue';
-import { useUserStore } from './stores/user';
+import Movies from './pages/Movies.vue';
 
 
 app.component('app-page', AppPage);
 app.component('home-page', Home);
 app.component('statistics-page', Statistics);
 app.component('logs-page', Logs);
+app.component('movies-page', Movies);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -51,7 +54,8 @@ app.component('logs-page', Logs);
 const routes = [
     { path: '/', component: Home },
     { path: '/statistics', component: Statistics },
-    { path : '/logs', component : Logs }
+    { path: '/logs', component : Logs },
+    { path: '/movies', component: Movies }
 ]
 
 const router = createRouter({

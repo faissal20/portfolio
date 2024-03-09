@@ -3,9 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Movie;
 use App\Models\Reply;
 use App\Models\SystemLog;
 use App\Models\Statistics;
+use App\Models\UserMovies;
 use App\Models\DailyMessage;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -60,5 +62,12 @@ class User extends Authenticatable
     }
     public function logs(){
         return $this->hasMany(SystemLog::class, 'user_id');
+    }
+
+    public function movies()
+    {
+        return $this->belongsToMany(Movie::class)
+            ->withPivot('watched', 'rating', 'review', 'watched_at')
+            ->withTimestamps();
     }
 }

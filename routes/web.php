@@ -9,6 +9,7 @@ use App\Services\LogServices;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\ReplyController;
+use App\Http\Controllers\Api\MoviesController;
 use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\Api\NotificationsController;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -118,6 +119,9 @@ Route::get('/data', function(Request $request){
         throw new HttpResponseException(response()->json(['error' => 'you are not an admin'],200));
 })->middleware('auth');
 
+
+Route::get('api/movies', [MoviesController::class,'index']);
+Route::post('api/movies', [MoviesController::class,'store']);
 
 // Auth::routes();
 

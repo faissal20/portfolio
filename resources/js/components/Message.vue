@@ -3,11 +3,13 @@ const props = defineProps(['message'])
 
 import { ref, computed } from 'vue';
 import axios from 'axios';
+import { useToast } from "vue-toastification";
 
 // create show message for each message
 let showReplyForm = ref(false);
 let reply = ref("");
 let response = ref("");
+const toast = useToast();
 
 let show = () => {
     reply.value = "";
@@ -25,12 +27,42 @@ let submitMessage = async () => {
 
     }).then(response => {
         response.value = response.data.message;
+        toast.success(response.data.message,
+            {
+                position: "top-center",
+                timeout: 4476,
+                closeOnClick: true,
+                pauseOnFocusLoss: true,
+                pauseOnHover: true,
+                draggable: true,
+                draggablePercent: 0.95,
+                showCloseButtonOnHover: false,
+                hideProgressBar: false,
+                closeButton: false,
+                icon: false,
+                rtl: true
+            });
+            showReplyForm.value = false;
 
     }).catch(error => {
         response.value = error.response.data.message;
+        toast.error('an error occured, please refresh the page and try again', 
+         {
+            position: "top-center",
+            timeout: 4476,
+            closeOnClick: true,
+            pauseOnFocusLoss: true,
+            pauseOnHover: true,
+            draggable: true,
+            draggablePercent: 0.95,
+            showCloseButtonOnHover: false,
+            hideProgressBar: false,
+            closeButton: false,
+            icon: false,
+            rtl: true
+        });
     });
 
-    showReplyForm.value = false;
 }
 </script>
 
@@ -75,6 +107,7 @@ let submitMessage = async () => {
         opacity: 0;
         transform: translateY(-50px);
     }
+
     50% {
         opacity: .3;
         transform: translateY(10px);

@@ -9,6 +9,8 @@ import { createApp } from 'vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { createPinia } from 'pinia';
 import { useUserStore } from './stores/user';
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -65,10 +67,15 @@ const router = createRouter({
 
 const pinia = createPinia()
 
-
+const toastOptions = {
+    transition: "Vue-Toastification__slideBlurred",
+    maxToasts: 20,
+    newestOnTop: true
+  };
 
 app.use(router)
 app.use(pinia)
+app.use(Toast, toastOptions);
 
 const userStore = useUserStore()
 

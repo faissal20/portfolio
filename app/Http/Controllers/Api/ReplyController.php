@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\DailyMessage;
 use App\Models\Reply;
 use App\Services\LogServices;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class ReplyController extends Controller
 {

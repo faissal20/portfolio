@@ -43,7 +43,6 @@ Route::middleware('guest')->group(function () {
         $request->validate([
             'username' => 'required|string|exists:users,username',
             'password' => 'required|string',
-            'remember' => 'boolean',
         ]);
 
 
@@ -51,15 +50,6 @@ Route::middleware('guest')->group(function () {
 
         if(!password_verify($request->password, $user->password)) {
             return back()->withErrors(['password' => 'Invalid password']);
-        }
-
-        if($request->remember) {
-            $token = Str::random(60);
-            $user->forceFill([
-                'remember_token' => hash('sha256', $token),
-            ])->save();
-
-            cookie()->queue('remember', $token, 60 * 24 * 30);
         }
 
         auth()->login($user, true);

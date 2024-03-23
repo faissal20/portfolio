@@ -1,15 +1,14 @@
 <script setup>
 const props = defineProps(['message'])
 
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import axios from 'axios';
-import { useToast } from "vue-toastification";
+import Button from 'primevue/button';
 
 // create show message for each message
 let showReplyForm = ref(false);
 let reply = ref("");
 let response = ref("");
-const toast = useToast();
 
 let show = () => {
     reply.value = "";
@@ -27,40 +26,10 @@ let submitMessage = async () => {
 
     }).then(response => {
         response.value = response.data.message;
-        toast.success(response.data.message,
-            {
-                position: "top-center",
-                timeout: 4476,
-                closeOnClick: true,
-                pauseOnFocusLoss: true,
-                pauseOnHover: true,
-                draggable: true,
-                draggablePercent: 0.95,
-                showCloseButtonOnHover: false,
-                hideProgressBar: false,
-                closeButton: false,
-                icon: false,
-                rtl: true
-            });
-            showReplyForm.value = false;
+        showReplyForm.value = false;
 
     }).catch(error => {
         response.value = error.response.data.message;
-        toast.error('an error occured, please refresh the page and try again', 
-         {
-            position: "top-center",
-            timeout: 4476,
-            closeOnClick: true,
-            pauseOnFocusLoss: true,
-            pauseOnHover: true,
-            draggable: true,
-            draggablePercent: 0.95,
-            showCloseButtonOnHover: false,
-            hideProgressBar: false,
-            closeButton: false,
-            icon: false,
-            rtl: true
-        });
     });
 
 }
@@ -81,8 +50,8 @@ let submitMessage = async () => {
                 rows="2">
                 </textarea>
             <div class="options">
-                <button class="" @click="submitMessage()"><i class="fa-solid fa-share"></i></button>
-                <button class="" @click="close()"><i class="fa-solid fa-xmark"></i></button>
+                <Button icon="pi pi-check" severity="secondary" @click="submitMessage()"/>
+                <Button icon="pi pi-times" severity="secondary" @click="close()"/>
             </div>
         </div>
     </transition>

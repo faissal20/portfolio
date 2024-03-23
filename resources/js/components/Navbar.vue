@@ -1,0 +1,50 @@
+<script setup>
+    import { ref } from 'vue';
+    import TabMenu from 'primevue/tabmenu';
+    import { useUserStore } from '../stores/user';
+
+    const userStore = useUserStore();
+
+    const userRole = userStore.role;
+
+    let items = ref([
+        {
+            label: "Home",
+            icon: "pi pi-fw pi-home",
+            route: "/"
+        },
+        {
+            label: "Statistics",
+            icon: "pi pi-fw pi-chart-bar",
+            route: "/statistics"
+        },
+        {
+            label: "Logs",
+            icon: "pi pi-fw pi-users",
+            route: "/logs",
+            visible: userRole === "admin",
+        },
+        {
+            label: "Movies Series",
+            icon: "pi pi-fw pi-video",
+            route: "/movies",
+            visible: userRole === "admin",
+        },
+    ]);
+</script>
+
+<template>
+    <TabMenu :model="items" :style="{ padding: '30px'}">
+        <template #item="{ item, props }">
+            <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" >
+                <a v-ripple :href="href" v-bind="props.action" @click="navigate" :style="{ padding: '10px' }" >
+                    <span v-bind="props.icon" :style="{ marginRight: '5px'}"/>
+                    <span v-bind="props.label">{{ item.label }}</span>
+                </a>
+            </router-link>
+        </template>
+    </TabMenu>
+</template>
+
+<style>
+</style>

@@ -25,7 +25,7 @@
 <body style="background-image: url('{{ asset('/assets/background.jpg') }}'); @auth backdrop-filter: blur(20px);  @endauth">
     <div id="app">
         <header>
-            <nav class="navbar">
+            {{-- <nav class="navbar">
                 <a class="logo" href="{{ url('/') }}">
                     🌕
                 </a>
@@ -66,7 +66,8 @@
 
                     </ul>
                 </div>
-            </nav>
+            </nav> --}}
+            <navbar></navbar>
         </header>
 
 

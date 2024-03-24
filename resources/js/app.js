@@ -30,6 +30,8 @@ import Home from './pages/Home.vue';
 import Statistics from './pages/Statistics.vue';
 import Logs from './pages/Logs.vue';
 import Movies from './pages/Movies.vue';
+import TimeLine from './pages/TimeLine.vue';
+import Things from './pages/Things.vue';
 import PrimeVue from "primevue/config";
 
 
@@ -63,7 +65,9 @@ const routes = [
     { path: '/', component: Home },
     { path: '/statistics', component: Statistics },
     { path: '/logs', component : Logs },
-    { path: '/movies', component: Movies }
+    { path: '/movies', component: Movies },
+    { path: '/timeline', component: TimeLine },
+    { path: '/things', component: Things },
 ];
 
 const router = createRouter({

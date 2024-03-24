@@ -17,11 +17,11 @@ axios.get('/api/notifications/logs').then(response => {
 <template>
         <div class="logs">
             <div class="table">
-                <DataTable :value="logs" scrollable scrollHeight="600px" style="" >
+                <DataTable :value="logs" scrollable scrollHeight="600px" >
                     <Column field="user.username" header="User" style="min-width: 100px; padding:1rem;"></Column>
-                    <Column field="data.user_agent"  header="agent" style="min-width: 100px;"></Column>
                     <Column field="data.ip" header="ip" style="min-width: 100px;"></Column>
                     <Column field="type" header="type" style="min-width: 100px;"></Column>
+                    <Column field="data.user_agent"  header="agent" style="min-width: 700px !important;"></Column>
                 </DataTable>
             </div>
         </div>

@@ -28,8 +28,21 @@
             label: "Movies Series",
             icon: "pi pi-fw pi-video",
             route: "/movies",
-            visible: userRole === "admin",
+            // visible: userRole === "admin",
         },
+        {
+            label: "Things I love about you",
+            icon: "pi pi-fw pi-heart",
+            route: "/things",
+            // visible: userRole === "admin",
+        },
+        {
+            label: "Time Line",
+            icon: "pi pi-fw pi-history",
+            route: "/timeline",
+            // visible: userRole === "admin",
+
+        }
     ]);
 </script>
 

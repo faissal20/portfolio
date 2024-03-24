@@ -1,11 +1,14 @@
 <script setup>
 import axios from 'axios';
 import { ref } from 'vue';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import ColumnGroup from 'primevue/columngroup';   // optional
+import Row from 'primevue/row';                   // optional
 
 const logs = ref([]);
 
 axios.get('/api/notifications/logs').then(response => {
-    console.log(response.data.data)
     logs.value = response.data.data;
 });
 
@@ -13,13 +16,12 @@ axios.get('/api/notifications/logs').then(response => {
 
 <template>
     <div>
-        <h1>Logs</h1>
-        <div>
-            <div v-for="log in logs" :key="log.id" class="log">
-                <td colspan="2">{{ log.user.username }} <span>{{ log.type }} </span> </td>
-                <td>{{ log.created }}</td>
-            </div>
-        </div>
+        <DataTable :value="logs" scrollable scrollHeight="600px" style="" >
+            <Column field="user.username" header="User" style="min-width: 100px; padding:1rem;"></Column>
+            <Column field="data.user_agent"  header="agent" style="min-width: 100px"></Column>
+            <Column field="data.ip" header="ip" style="min-width: 100px"></Column>
+            <Column field="type" header="type" style="min-width: 100px"></Column>
+        </DataTable>
     </div>
 </template>
 

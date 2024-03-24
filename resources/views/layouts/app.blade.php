@@ -17,63 +17,38 @@
     @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js'])
 
     <script>
-        
-        window.user = {!! json_encode( auth()->user()) !!};
+        window.user = {!! json_encode(auth()->user()) !!};
     </script>
 </head>
 
-<body style="background-image: url('{{ asset('/assets/background.jpg') }}'); @auth backdrop-filter: blur(20px);  @endauth">
+<body
+    style="background-image: url('{{ asset('/assets/background.jpg') }}'); @auth backdrop-filter: blur(20px); @endauth">
     <div id="app">
-        <header>
-            {{-- <nav class="navbar">
-                <a class="logo" href="{{ url('/') }}">
-                    🌕
-                </a>
-
-                <div class="menu">
-                    <!-- Right Side Of Navbar -->
-                    <ul class="notification">
-                        <!-- Authentication Links -->
-                        @auth
-                            <li>
-                                <button class="btn-icon scaled">
-                                    <i class="fa-regular fa-bell"></i>
-                                </button>
-                            </li>
-                            <li>
-                                <button class="btn-icon scaled">
-                                    <i class="fa-regular fa-envelope"></i>
-                                </button>
-                            </li>
-                            <li>
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button class="btn-icon scaled">
-                                        <i class="fa-solid fa-right-from-bracket"></i>
-                                    </button>
-                                </form>
-                            </li>
-
-                        @endauth
-
-                        @guest
-                            <li>
-                                <a class="btn-secondary scaled" href="{{ route('login') }}">
-                                    login
-                                </a>
-                            </li>
-                        @endguest
-
-                    </ul>
-                </div>
-            </nav> --}}
-            <navbar></navbar>
+        <header class="navbar @guest guest @endguest">
+            <a class="logo">
+                🌕
+            </a>
+            @auth
+                <navbar></navbar>
+            @endauth
+            <div class="login">
+                @guest
+                    <a href="{{ route('login') }}" class="btn-primary">Login</a>
+                @else
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="btn-primary">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @endguest
+            </div>
         </header>
-
-
         <main>
             @yield('content')
         </main>
+
     </div>
 </body>
 

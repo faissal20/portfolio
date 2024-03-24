@@ -34,16 +34,16 @@
 </script>
 
 <template>
-    <TabMenu :model="items" :style="{ padding: '30px'}">
-        <template #item="{ item, props }">
-            <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" >
-                <a v-ripple :href="href" v-bind="props.action" @click="navigate" :style="{ padding: '10px' }" >
-                    <span v-bind="props.icon" :style="{ marginRight: '5px'}"/>
-                    <span v-bind="props.label">{{ item.label }}</span>
-                </a>
-            </router-link>
-        </template>
-    </TabMenu>
+        <TabMenu :model="items" :style="{ padding: '30px'}">
+            <template #item="{ item, props }">
+                <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" >
+                    <a v-ripple :href="href" v-bind="props.action" @click="navigate" :style="{ padding: '10px' }" >
+                        <span v-bind="props.icon" :style="{ marginRight: '5px'}"/>
+                        <span v-bind="props.label">{{ item.label }}</span>
+                    </a>
+                </router-link>
+            </template>
+        </TabMenu>
 </template>
 
 <style>

@@ -15,17 +15,25 @@ axios.get('/api/notifications/logs').then(response => {
 </script>
 
 <template>
-    <div>
-        <DataTable :value="logs" scrollable scrollHeight="600px" style="" >
-            <Column field="user.username" header="User" style="min-width: 100px; padding:1rem;"></Column>
-            <Column field="data.user_agent"  header="agent" style="min-width: 100px"></Column>
-            <Column field="data.ip" header="ip" style="min-width: 100px"></Column>
-            <Column field="type" header="type" style="min-width: 100px"></Column>
-        </DataTable>
-    </div>
+        <div class="logs">
+            <div class="table">
+                <DataTable :value="logs" scrollable scrollHeight="600px" style="" >
+                    <Column field="user.username" header="User" style="min-width: 100px; padding:1rem;"></Column>
+                    <Column field="data.user_agent"  header="agent" style="min-width: 100px;"></Column>
+                    <Column field="data.ip" header="ip" style="min-width: 100px;"></Column>
+                    <Column field="type" header="type" style="min-width: 100px;"></Column>
+                </DataTable>
+            </div>
+        </div>
+    
 </template>
 
 <style>
+.table {
+    background-color: #fff;
+    border-radius: 7px;
+    padding: 1rem;
+}
 .log span {
     background-color: #b6ff0c;
     padding: 5px;

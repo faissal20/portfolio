@@ -61,11 +61,17 @@ const events = ref([
 }
 .p-card{
     padding: 1rem;
+    margin: 10px;
 }
 
 .p-timeline-event{
     gap: 10px;
 }
+
+.p-timeline-event-content{
+    margin: 10px;
+}
+
 // flex w-2rem h-2rem align-items-center justify-content-center text-white border-circle z-1 shadow-1 this to single scss class .icon-marker 
 
 .icon-marker {

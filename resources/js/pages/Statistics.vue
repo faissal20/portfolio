@@ -10,12 +10,14 @@ let knowledge = computed(() => store.knowledge);
 let happiness = computed(() => store.happiness);
 let missing = computed(() => store.missing);
 let madeForEachOther = computed(() => store.madeForEachOther);
+let daroriyat = computed(() => store.daroriyat);
 
 let heartProgress = computed(() => ({ height: `${store.heartStorage}%` }));
 let knowledgeProgress = computed(() => ({ height: `${store.knowledge}%` }));
 let happinessProgress = computed(() => ({ height: `${store.happiness}%` }));
 let missingProgress = computed(() => ({ height: `${store.missing}%` }));
 let madeForEachOthersProgress = computed(() => ({ height: `${store.madeForEachOther}%` }));
+let daroriyatProgress = computed(() => ({ height: `${store.daroriyat}%` }));
 
 var loading = ref(false)
 
@@ -27,6 +29,7 @@ let  save = async () => {
         happiness: happiness.value,
         missing: missing.value,
         madeForEachOther: madeForEachOther.value,
+        daroriyat: daroriyat.value
     }
     
     loading.value = true
@@ -111,6 +114,19 @@ let  save = async () => {
                         <p>{{ madeForEachOther + "%" }}</p>
                     </div>
                 </div>
+                <div class="state-card daroriyat">
+                    <div class="progress" :style="daroriyatProgress"></div>
+                    <h4>How much I am daori for you !</h4>
+                    <div class="footer">
+                        <div class="control">
+                            <button class="increas" @click="store.setDaroriyat(store.daroriyat + 5)"><i
+                                    class="fa-solid fa-plus"></i></button>
+                            <button class="increas" @click="store.setDaroriyat(store.daroriyat - 5)"><i
+                                    class="fa-solid fa-minus"></i></button>
+                        </div>
+                        <p>{{ daroriyat + "%" }}</p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="save">
@@ -174,6 +190,11 @@ let  save = async () => {
 .madeForEachOther .progress {
     background-color: #ffae0070;
     box-shadow: 0 0 10px #ffae0070;
+}
+
+.daroriyat .progress {
+    background-color: #ff00ff70;
+    box-shadow: 0 0 10px #ff00ff70;
 }
 
 .stat-cards h4 {

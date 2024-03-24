@@ -7,6 +7,7 @@ export const useMyStatisticsStore = defineStore("myStatistics", {
         _missing: 0,
         _happiness: 0,
         _madeForEachOther: 0,
+        _daroriyat: 0,
     }),
     
     getters: {
@@ -15,9 +16,12 @@ export const useMyStatisticsStore = defineStore("myStatistics", {
         missing: (state) => state._missing,
         happiness: (state) => state._happiness,
         madeForEachOther: (state) => state._madeForEachOther,
+        daroriyat: (state) => state._daroriyat,
     },
     
     actions: {
+
+
         
         setHeartStorageValue(value) {
             console.log(value);
@@ -35,7 +39,11 @@ export const useMyStatisticsStore = defineStore("myStatistics", {
         setHappinessValue(value) {
             this._happiness = value;
         },
-    
+
+        setDaroriyatValue(value) {
+            this._daroriyat = value;
+        },
+        
         setMadeForEachOtherValue(value) {
             this._madeForEachOther = value;
         },

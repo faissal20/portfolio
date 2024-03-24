@@ -7,6 +7,7 @@ export const useStatisticsStore = defineStore('Statistics', {
         _missing: null,
         _happiness: null,
         _madeForEachOther: null,
+        _daroriyat: null,
     }),
 
     getters: {
@@ -15,12 +16,14 @@ export const useStatisticsStore = defineStore('Statistics', {
         missing: (state) => state._missing,
         happiness: (state) => state._happiness,
         madeForEachOther: (state) => state._madeForEachOther,
+        daroriyat: (state) => state._daroriyat,
         allStatistics : (state) => {
             state._heartStorage,
             state._knowledge,
             state._missing,
             state._happiness,
-            state._madeForEachOther
+            state._madeForEachOther,
+            state._daroriyat
         }
     },
 
@@ -31,8 +34,16 @@ export const useStatisticsStore = defineStore('Statistics', {
             this.setMissing(data.missing)
             this.setHappiness(data.happiness)
             this.setMadeForEachOther(data.madeForEachOther)
+            this.setDaroriyat(data.daroriyat)
         },
-        
+
+        setDaroriyat(value) {
+            if(value === null) this._daroriyat = 0
+            else if(value > 100) this._daroriyat = 100
+            else if(value < 0) this._daroriyat = 0
+            else this._daroriyat = value
+        },
+
         setHeartStorage(value) {
             if(value === null) this._heartStorage = 0
             else if(value > 100) this._heartStorage = 100

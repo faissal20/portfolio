@@ -11,12 +11,14 @@ let knowledge = computed(() => store.knowledge);
 let happiness = computed(() => store.happiness);
 let missing = computed(() => store.missing);
 let madeForEachOther = computed(() => store.madeForEachOther);
+let daroriyat = computed(() => store.daroriyat);
 
 let heartProgress = computed(() => ({ width: `${store.heartStorage}%` }));
 let knowledgeProgress = computed(() => ({ width: `${store.knowledge}%` }));
 let happinessProgress = computed(() => ({ width: `${store.happiness}%` }));
 let missingProgress = computed(() => ({ width: `${store.missing}%` }));
 let madeForEachOthersProgress = computed(() => ({ width: `${store.madeForEachOther}%` }));
+let daroriyatProgress = computed(() => ({ width: `${store.daroriyat}%` }));
 
 </script>
 
@@ -73,6 +75,15 @@ let madeForEachOthersProgress = computed(() => ({ width: `${store.madeForEachOth
                             <span v-if="madeForEachOther > 0" :style="madeForEachOthersProgress"></span>
                         </transition>
                         <p>{{ madeForEachOther }}%</p>
+                    </div>
+                </div>
+                <div class="my-state-card daroriyat">
+                    <h4>How much you are Daroriya For me </h4>
+                    <div  class="meter">
+                        <transition name="progress">
+                            <span v-if="daroriyat > 0" :style="daroriyatProgress"></span>
+                        </transition>
+                        <p>{{ daroriyat }}%</p>
                     </div>
                 </div>
             </div>
@@ -154,6 +165,11 @@ let madeForEachOthersProgress = computed(() => ({ width: `${store.madeForEachOth
 .madeForEachOther .meter>span {
     background-color: #ffae0070;
     box-shadow: 0 0 10px #ffae0070;
+}
+
+.daroriyat .meter>span {
+    background-color: #ff00ff70;
+    box-shadow: 0 0 10px #ff00ff70;
 }
 
 .progress-enter-active {

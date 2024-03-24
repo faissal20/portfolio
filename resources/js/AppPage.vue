@@ -95,6 +95,7 @@ onMounted(() => {
         myStatisticsStore.setHappinessValue(data.data.happiness);
         myStatisticsStore.setMissingValue(data.data.missing);
         myStatisticsStore.setMadeForEachOtherValue(data.data.madeForEachOther);
+        myStatisticsStore.setDaroriyatValue(data.data.daroriyat);
     });
 
     statistics.then(data => {
@@ -104,6 +105,7 @@ onMounted(() => {
         statisticsStore.setHappiness(data.data.happiness);
         statisticsStore.setMissing(data.data.missing);
         statisticsStore.setMadeForEachOther(data.data.madeForEachOther);
+        statisticsStore.setDaroriyat(data.data.daroriyat);
 
     });
 })

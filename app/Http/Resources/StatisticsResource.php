@@ -20,6 +20,7 @@ class StatisticsResource extends JsonResource
             'happiness' => $this->happiness,
             'missing' => $this->missing,
             'madeForEachOther' => $this->made_for_each_other,
+            'daroriyat' => $this->daroriyat,
         ];
     }
 }

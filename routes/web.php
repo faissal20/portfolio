@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use App\Models\SystemLog;
+use App\Events\NewMessage;
 use App\Models\statistics;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\ReplyController;
 use App\Http\Controllers\Api\MoviesController;
+use App\Http\Controllers\Api\MessageController;
 use App\Http\Controllers\Api\StatisticsController;
 use App\Http\Controllers\Api\NotificationsController;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -28,7 +30,6 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 Route::get('/', function () {
 
     return redirect('/home');
-
 })->name('welcome');
 
 
@@ -48,7 +49,7 @@ Route::middleware('guest')->group(function () {
 
         $user = User::where('username', $request->username)->firstOrFail();
 
-        if(!password_verify($request->password, $user->password)) {
+        if (!password_verify($request->password, $user->password)) {
             return back()->withErrors(['password' => 'Invalid password']);
         }
 
@@ -57,7 +58,6 @@ Route::middleware('guest')->group(function () {
         LogServices::store($request, 'login', [], $user);
 
         return redirect('/home');
-        
     })->name('login');
 });
 
@@ -69,7 +69,7 @@ Route::middleware('auth')->group(function () {
     })->name('home');
 
     Route::post('/logout', function (Request $request) {
-        LogServices::store($request, 'logout', [],null);
+        LogServices::store($request, 'logout', [], null);
         auth()->logout();
         $request->session()->invalidate();
         return redirect('/');
@@ -77,10 +77,10 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::prefix('api')->group(function(){
+Route::prefix('api')->group(function () {
 
     Route::get('/home', [HomeController::class, 'index']);
-    Route::get('/replies', [ReplyController::class, 'index'] );
+    Route::get('/replies', [ReplyController::class, 'index']);
     Route::post('/home/reply/{daily_message}', [ReplyController::class, 'store']);
 
     Route::get('/notifications', [NotificationsController::class, 'index']);
@@ -97,21 +97,25 @@ Route::prefix('api')->group(function(){
     Route::put('/statistics', [StatisticsController::class, 'update']);
     Route::delete('/ourStatistics/{id}', [StatisticsController::class, 'destroy']);
 
-
+    // chat routes
+    Route::get('/chat', [MessageController::class, 'index']);
+    
+    
 })->middleware('auth');
 
+Route::post('/api/chat', [MessageController::class, 'store']);
 
 
-Route::get('/data', function(Request $request){
-    if($request->user()->role == 'admin')
+Route::get('/data', function (Request $request) {
+    if ($request->user()->role == 'admin')
         return SystemLog::with('user:id,username')->get();
     else
-        throw new HttpResponseException(response()->json(['error' => 'you are not an admin'],200));
+        throw new HttpResponseException(response()->json(['error' => 'you are not an admin'], 200));
 })->middleware('auth');
 
 
-Route::get('api/movies', [MoviesController::class,'index']);
-Route::post('api/movies', [MoviesController::class,'store']);
+Route::get('api/movies', [MoviesController::class, 'index']);
+Route::post('api/movies', [MoviesController::class, 'store']);
 
 // Auth::routes();
 

@@ -42,6 +42,12 @@
             route: "/timeline",
             // visible: userRole === "admin",
 
+        },
+        {
+            label: "Chat",
+            icon: "pi pi-fw pi-comments",
+            route: "/chat",
+            // visible: userRole === "admin",
         }
     ]);
 </script>

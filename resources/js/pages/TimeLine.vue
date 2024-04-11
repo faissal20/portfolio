@@ -16,7 +16,7 @@
                     </template>
                     <template #content>
                         <p>
-                            {{ slotProps.item.message }} 
+                            {{ slotProps.item.message }}
                         </p>
                     </template>
                 </Card>
@@ -33,7 +33,7 @@ import Card from 'primevue/card';
 const events = ref([
     { status: 'First Seen', date: '06/2022 10:00', icon: 'pi pi-share-alt', color: '#9C27B0', image: 'game-controller.jpg', message: 'This is the first time I saw you after an exam, under the tree, with that beautiful smile in that time I said people who know this girl must be the luckiest in this world.' },
     { status: 'First meet', date: '06/2022', icon: 'pi pi-user-plus', color: '#673AB7', message: "Second time I saw you and the first time we made a conversation, but I didn't realise what would you become to me one day" },
-    
+
 ]);
 
 </script>
@@ -55,20 +55,21 @@ const events = ref([
     }
 }
 
-.timeline{
-    margin: 1rem 6rem ;
+.timeline {
+    margin: 1rem 6rem;
     flex: 1;
 }
-.p-card{
+
+.p-card {
     padding: 1rem;
     margin: 10px;
 }
 
-.p-timeline-event{
+.p-timeline-event {
     gap: 10px;
 }
 
-.p-timeline-event-content{
+.p-timeline-event-content {
     margin: 10px;
 }
 
@@ -84,7 +85,6 @@ const events = ref([
     color: #fff;
     border-radius: 50%;
     z-index: 1;
-    box-shadow : 0 0 10px #00000050;
+    box-shadow: 0 0 10px #00000050;
 }
-
 </style>

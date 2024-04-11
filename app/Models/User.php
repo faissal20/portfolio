@@ -70,4 +70,14 @@ class User extends Authenticatable
             ->withPivot('watched', 'rating', 'review', 'watched_at')
             ->withTimestamps();
     }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'to');
+    }
+
+    public function sentMessages()
+    {
+        return $this->hasMany(Message::class, 'from');
+    }
 }

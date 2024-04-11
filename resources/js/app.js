@@ -10,6 +10,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import { createPinia } from 'pinia';
 import { useUserStore } from './stores/user';
 
+
 import 'primevue/resources/themes/aura-light-green/theme.css'
 
 /**
@@ -32,6 +33,7 @@ import Logs from './pages/Logs.vue';
 import Movies from './pages/Movies.vue';
 import TimeLine from './pages/TimeLine.vue';
 import Things from './pages/Things.vue';
+import Chat from './pages/Chat.vue';
 import PrimeVue from "primevue/config";
 
 
@@ -64,10 +66,11 @@ app.component('navbar', Navbar);
 const routes = [
     { path: '/', component: Home },
     { path: '/statistics', component: Statistics },
-    { path: '/logs', component : Logs },
+    { path: '/logs', component: Logs },
     { path: '/movies', component: Movies },
     { path: '/timeline', component: TimeLine },
     { path: '/things', component: Things },
+    { path: '/chat', component: Chat },
 ];
 
 const router = createRouter({
@@ -86,5 +89,10 @@ app.use(PrimeVue, {
 const userStore = useUserStore()
 
 userStore.setUser(window.user);
+
+console.log(window.Echo.channel('new-message'));
+
+const user_id = window.user.id;
+
 
 app.mount('#app');

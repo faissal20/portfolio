@@ -52,7 +52,6 @@ export const useStatisticsStore = defineStore('Statistics', {
         },
 
         setKnowledge(value) {
-            console.log(value);
             if(value === null) this._knowledge = 0
             else if(value > 100) this._knowledge = 100
             else if(value < 0) this._knowledge = 0

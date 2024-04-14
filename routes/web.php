@@ -99,11 +99,11 @@ Route::prefix('api')->group(function () {
 
     // chat routes
     Route::get('/chat', [MessageController::class, 'index']);
+    Route::post('/chat', [MessageController::class, 'store']);
     
     
 })->middleware('auth');
 
-Route::post('/api/chat', [MessageController::class, 'store']);
 
 
 Route::get('/data', function (Request $request) {

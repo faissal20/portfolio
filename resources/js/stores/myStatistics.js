@@ -24,7 +24,6 @@ export const useMyStatisticsStore = defineStore("myStatistics", {
 
         
         setHeartStorageValue(value) {
-            console.log(value);
             this._heartStorage = value;
         },
     

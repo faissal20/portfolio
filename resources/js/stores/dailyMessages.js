@@ -11,7 +11,6 @@ export const useDailyMessagesStore = defineStore('DailyMessages', {
 
     actions : {
         setDailyMessages(messages){
-            console.log(messages)
             this.messages = messages;
         },
     }

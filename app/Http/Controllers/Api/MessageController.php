@@ -7,6 +7,7 @@ use App\Http\Requests\Messages\StoreRequest;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Chat\MessageResource;
 
 class MessageController extends Controller
 {
@@ -15,9 +16,9 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages  = Message::with('from', 'to')->orderBy('created_at', 'desc')->get();
+        $messages  = Message::orderBy('created_at', 'asc')->with(['from', 'to'])->get();
         
-        return response()->json($messages);
+        return MessageResource::collection($messages->load(['from', 'to']));
     }
 
     /**
@@ -28,7 +29,7 @@ class MessageController extends Controller
         $data = $request->validated();
         $from = $request->user()->id ?? 2;
         $to = $data['to'];
-
+        
         $message = Message::create([
             'from' => $from,
             'to' => $data['to'],
@@ -37,9 +38,9 @@ class MessageController extends Controller
             'seen' => false,
         ]);
 
-        NewMessage::dispatch($message, $from, $to);
+        NewMessage::dispatch($message);
 
-        return response()->json(['error' => false, 'message' => 'Message Sent !'], 200);
+        return new MessageResource($message);
     }
 
     /**

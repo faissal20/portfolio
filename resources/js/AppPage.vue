@@ -99,7 +99,6 @@ onMounted(() => {
     });
 
     statistics.then(data => {
-        console.log(data.data);
         statisticsStore.setStatistics(data.data);
         statisticsStore.setKnowledge(data.data.knowledge);
         statisticsStore.setHappiness(data.data.happiness);

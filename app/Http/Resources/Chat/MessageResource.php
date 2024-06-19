@@ -18,8 +18,18 @@ class MessageResource extends JsonResource
         return [
             'id' => $this->id,
             'message' => $this->content,
-            'from' => $this->load('from'),
-            'to' => $this->load('to'),
+            'from' => $this->whenLoaded('from', function () {
+                return [
+                    'id' => $this->from->id,
+                    'username' => $this->from->username,
+                ];
+            }),
+            'to' => $this->whenLoaded('to', function () {
+                return [
+                    'id' => $this->to->id,
+                    'username' => $this->to->username,
+                ];
+            }),
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'created_at_human' => $this->created_at->diffForHumans(),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),

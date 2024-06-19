@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Movie;
 use App\Models\Reply;
+use App\Models\Message;
 use App\Models\SystemLog;
 use App\Models\Statistics;
 use App\Models\UserMovies;

@@ -90,8 +90,6 @@ const userStore = useUserStore()
 
 userStore.setUser(window.user);
 
-console.log(window.Echo.channel('new-message'));
-
 const user_id = window.user.id;
 
 

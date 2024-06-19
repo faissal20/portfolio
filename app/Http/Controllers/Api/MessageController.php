@@ -14,11 +14,13 @@ class MessageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $messages  = Message::orderBy('created_at', 'asc')->with(['from', 'to'])->get();
-        
-        return MessageResource::collection($messages->load(['from', 'to']));
+        $messages  = Message::with(['from', 'to'])->orderBy('created_at', 'asc')->get();
+        return [
+            'data' => $messages,
+        ];
+        // return MessageResource::collection($messages);    
     }
 
     /**
@@ -40,7 +42,9 @@ class MessageController extends Controller
 
         NewMessage::dispatch($message);
 
-        return new MessageResource($message);
+        return [
+            'data' => $message->load(['from', 'to']),
+        ];
     }
 
     /**

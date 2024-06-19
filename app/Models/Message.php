@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Message extends Model
 {
@@ -13,12 +14,12 @@ class Message extends Model
 
     public function from()
     {
-        return $this->belongsTo(User::class, 'from');
+        return $this->belongsTo(User::class, 'from', 'id');
     }
 
     public function to()
     {
-        return $this->belongsTo(User::class, 'to');
+        return $this->belongsTo(User::class, 'to' , 'id');
     }
     
 }

@@ -16,11 +16,28 @@ onMounted(() => {
 
 let message = ref('')
 
-let sendMessage = async (e) => { 
+let sendMessage = async (e) => {
     let id = user_id == 1 ? 2 : 1;
     await store.sendMessage(message.value, id)
-    message.value = ''
+    message.value = '';
     chatContent.value.scrollTop = chatContent.value.scrollHeight - chatContent.value.clientHeight
+    // clear the editor content
+    let editor = document.querySelector('.ql-editor');
+    editor.innerHTML = '';
+
+    // check notification
+    console.log("Checking notification permission");
+    console.log(Notification.permission);
+    if (!("Notification" in window)) {
+        console.log("This browser does not support desktop notification");
+
+    } else if (Notification.permission === "denied") {
+
+        console.log("Notification permission not granted");
+        Notification.requestPermission().then((permission) => {
+            console.log(permission);
+        });
+    }
 }
 
 let chatMessages = computed(() => {
@@ -31,13 +48,12 @@ let chatMessages = computed(() => {
 watch(() => chatMessages.value, () => {
     setTimeout(() => {
         chatContent.value.scrollTop = chatContent.value.scrollHeight - chatContent.value.clientHeight
-    }, 100)
+    }, 50)
 })
 
 
 
 window.Echo.private(`new-message.${user_id}`).listen('NewMessage', (e) => {
-    console.log(e.message)
     store.addMessage(e.message)
     chatContent.value.scrollTop = chatContent.value.scrollHeight - chatContent.value.clientHeight
 });
@@ -49,67 +65,71 @@ window.Echo.private(`new-message.${user_id}`).listen('NewMessage', (e) => {
         <div class="chat-content" ref="chatContent">
             <div :class="message.from.id == user_id ? `my-message` : `message`" v-for="message in chatMessages"
                 :key="message.id">
-                <div class="message__user">{{ message.from.username }}</div>
-                <div class="message__content" v-html="message.message" />
+                <!-- <div class="message__user">{{ message.from.username }}</div> -->
+                <div class="message__content" v-html="message.content" />
             </div>
         </div>
 
-        <Editor v-model="message" editorStyle="height: 100px"  @keyup.ctrl.enter="sendMessage(e)" />
+        <Editor v-model="message" editorStyle="height: 100px" @keyup.ctrl.enter="sendMessage(e)" />
     </div>
 </template>
 
 <style lang="scss" scoped>
-    .chat {
-        flex: 1;
-        padding: 1rem 2rem;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-    }
+.chat {
+    flex: 1;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
 
-    .chat-content {
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-        height: 250px;
-        overflow-y: auto;
-        padding: 0 1rem;
-        margin-bottom: 1rem;
-    }
+.chat-content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    height: 250px;
+    overflow-y: auto;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+}
 
-    .message {
-        display: flex;
-        margin-bottom: .4rem;
-        background-color: #f1f1f1;
-        padding: .5rem 1rem;
-        font-size: .9rem;
-        max-width: 100%;
-        border-radius: 0 12px 12px 12px;
-    }
+.message {
+    display: flex;
+    margin-bottom: .4rem;
+    background-color: #f1f1f1;
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    max-width: 100%;
+    border-radius: 0 12px 12px 12px;
+}
 
-    .my-message {
-        padding: .5rem 1rem;
-        font-size: .9rem;
-        margin-bottom: 1rem;
-        background-color: #f1f1f1;
-        max-width: 100%;
-        align-self: flex-end;
-        border-radius: 12px 0 12px 12px;
-    }
+.my-message {
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    margin-bottom: 1rem;
+    background-color: #f1f1f1;
+    max-width: 100%;
+    align-self: flex-end;
+    border-radius: 12px 0 12px 12px;
+}
 
-    .chat-content::-webkit-scrollbar {
-        width: 7px;
-        border-radius: 70px;
+.chat-content::-webkit-scrollbar {
+    width: 7px;
+    border-radius: 70px;
 
-    }
+}
 
-    .chat-content::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
+.chat-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
 
-    .chat-content::-webkit-scrollbar-thumb {
-        background-color: #888;
-        border-radius: 70px;
-    }
+.chat-content::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 70px;
+}
 
+.message__user {
+    font-weight: bold;
+    margin-right: 1rem;
+}
 </style>

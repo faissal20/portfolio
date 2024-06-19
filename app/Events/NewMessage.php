@@ -41,18 +41,7 @@ class NewMessage implements ShouldBroadcast
     public function broadcastWith(): array
     {
         return [
-            'message' => [
-                'id' => $this->message->id,
-                'message' => $this->message->content,
-                'from' => $this->message->from,
-                'to' => $this->message->to,
-                'created_at' => $this->message->created_at->format('Y-m-d H:i:s'),
-                'created_at_human' => $this->message->created_at->diffForHumans(),
-                'updated_at' => $this->message->updated_at->format('Y-m-d H:i:s'),
-                'updated_at_human' => $this->message->updated_at->diffForHumans(),
-                'type' => $this->message->type,
-                'seen' => $this->message->seen,
-            ],
+            'message' => $this->message->load(['from', 'to']),
         ];
     }
 }

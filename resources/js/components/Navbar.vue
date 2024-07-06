@@ -9,42 +9,42 @@
 
     let items = ref([
         {
-            label: "Home",
+            label: "",
             icon: "pi pi-fw pi-home",
             route: "/"
         },
         {
-            label: "Statistics",
+            label: "",
             icon: "pi pi-fw pi-chart-bar",
             route: "/statistics"
         },
         {
-            label: "Logs",
+            label: "",
             icon: "pi pi-fw pi-users",
             route: "/logs",
             visible: userRole === "admin",
         },
         {
-            label: "Movies Series",
+            label: "",
             icon: "pi pi-fw pi-video",
             route: "/movies",
             // visible: userRole === "admin",
         },
         {
-            label: "Things I love about you",
+            label: "",
             icon: "pi pi-fw pi-heart",
             route: "/things",
             // visible: userRole === "admin",
         },
         {
-            label: "Time Line",
+            label: "",
             icon: "pi pi-fw pi-history",
             route: "/timeline",
             // visible: userRole === "admin",
 
         },
         {
-            label: "Chat",
+            label: "",
             icon: "pi pi-fw pi-comments",
             route: "/chat",
             // visible: userRole === "admin",

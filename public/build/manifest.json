@@ -1,6 +1,6 @@
 {
-  "_quill-7Vw8db1Z.js": {
-    "file": "assets/quill-7Vw8db1Z.js",
+  "_quill-WMI9JXJ5.js": {
+    "file": "assets/quill-WMI9JXJ5.js",
     "imports": [
       "resources/js/app.js"
     ],
@@ -50,17 +50,17 @@
       "assets/primeicons-bmyWY2nz.svg"
     ],
     "css": [
-      "assets/app-KKiTmbDI.css"
+      "assets/app-N2tMLRNi.css"
     ],
     "dynamicImports": [
-      "_quill-7Vw8db1Z.js"
+      "_quill-WMI9JXJ5.js"
     ],
-    "file": "assets/app-zgkiKMrg.js",
+    "file": "assets/app-cdUXvPdg.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-0Gn-t1HH.css",
+    "file": "assets/app-pJjpvKRU.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   }

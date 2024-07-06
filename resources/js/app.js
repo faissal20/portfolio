@@ -32,7 +32,6 @@ import Statistics from './pages/Statistics.vue';
 import Logs from './pages/Logs.vue';
 import Movies from './pages/Movies.vue';
 import TimeLine from './pages/TimeLine.vue';
-import Things from './pages/Things.vue';
 import Chat from './pages/Chat.vue';
 import PrimeVue from "primevue/config";
 
@@ -69,7 +68,6 @@ const routes = [
     { path: '/logs', component: Logs },
     { path: '/movies', component: Movies },
     { path: '/timeline', component: TimeLine },
-    { path: '/things', component: Things },
     { path: '/chat', component: Chat },
 ];
 

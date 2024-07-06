@@ -40,7 +40,7 @@ let submitMessage = async () => {
         <div v-html="props.message.message">
 
         </div>
-        <div class="date"><i class="fa-regular fa-clock"></i> <span>{{ props.message.createdAt }}</span> </div>
+        <!-- <div class="date"><i class="fa-regular fa-clock"></i> <span>{{ props.message.createdAt }}</span> </div> -->
         <button class="show-reply" @click="show()"><i class="fa-solid fa-reply"></i></button>
     </div>
 

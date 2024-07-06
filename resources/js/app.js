@@ -34,6 +34,7 @@ import Movies from './pages/Movies.vue';
 import TimeLine from './pages/TimeLine.vue';
 import Chat from './pages/Chat.vue';
 import PrimeVue from "primevue/config";
+import Date from './components/Date.vue';
 
 
 

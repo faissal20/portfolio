@@ -18,7 +18,7 @@ class DailyMessageResource extends JsonResource
             'id' => $this->id,
             'message' => $this->message,
             'date' => $this->date,
-            'seen' => (bool) $this->seen,
+            'seen' => (bool) $this->seen ? true : false,
             'seenAt' => $this->seen_at,
             'createdAt' => $this->created_at->format('D d H:i'),
         ];

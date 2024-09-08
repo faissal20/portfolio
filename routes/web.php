@@ -61,23 +61,25 @@ Route::middleware('guest')->group(function () {
     })->name('login');
 });
 
+Route::get('/story', function (Request $request) {
+    $forgive = cache()->get('forgive');
+    // dd($forgive);
+    return view('story', [
+        'forgive' => $forgive,
+    ]);
+});
+
+Route::post('/story', function (Request $request) {
+    cache()->put('forgive', true);
+    return view('story', [
+        'forgive' => true,
+    ]);
+})->name('story.submit');
+
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/story', function(Request $request){
-        $forgive = cache()->get('forgive');
-        // dd($forgive);
-        return view('story', [
-            'forgive' => $forgive,
-        ]);
-    });
 
-    Route::post('/story', function(Request $request){
-        cache()->put('forgive', true);
-        return view('story', [
-            'forgive' => true,
-        ]);
-    })->name('story.submit');
 
     Route::get('/home', function () {
         return view('home');
@@ -115,8 +117,6 @@ Route::prefix('api')->group(function () {
     // chat routes
     Route::get('/chat', [MessageController::class, 'index']);
     Route::post('/chat', [MessageController::class, 'store']);
-    
-    
 })->middleware('auth');
 
 

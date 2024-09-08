@@ -64,6 +64,10 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
 
+    Route::get('/story', function(Request $request){
+        return view('story');
+    });
+
     Route::get('/home', function () {
         return view('home');
     })->name('home');

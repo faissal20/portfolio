@@ -65,8 +65,19 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
 
     Route::get('/story', function(Request $request){
-        return view('story');
+        $forgive = cache()->get('forgive');
+        // dd($forgive);
+        return view('story', [
+            'forgive' => $forgive,
+        ]);
     });
+
+    Route::post('/story', function(Request $request){
+        cache()->put('forgive', true);
+        return view('story', [
+            'forgive' => true,
+        ]);
+    })->name('story.submit');
 
     Route::get('/home', function () {
         return view('home');

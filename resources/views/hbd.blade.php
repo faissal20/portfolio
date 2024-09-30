@@ -23,13 +23,13 @@
         }
 
         .main-section h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #333;
             position: relative;
         }
 
         .main-section h2 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: #333;
             position: relative;
         }
@@ -44,7 +44,7 @@
             position: absolute;
             top: -100%;
             right: -30%;
-            width: 200px;
+            width: 100px;
             width: 100px;
             height: 100px;
         }

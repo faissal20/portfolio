@@ -82,6 +82,10 @@
             border-radius: 10px;
         }
 
+        span {
+            font-family:monospace;
+        }
+
         .gift-button {
             cursor: pointer;
             margin: auto;
@@ -164,6 +168,7 @@
         </h1>
         <h2>Dear Tasnim</h2>
         <p>24 years of you making the word beautifull by existing in it</p>
+        <span>click the gift</span>
 
         {{-- gift --}}
 

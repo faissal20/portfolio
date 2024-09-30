@@ -197,7 +197,7 @@
     </div>
 
     <script>
-        const duration = 15 * 1000,
+        const duration = 30 * 1000,
             animationEnd = Date.now() + duration,
             defaults = {
                 startVelocity: 20,
@@ -205,8 +205,8 @@
                 ticks: 60,
                 zIndex: 0,
                 particleCount: 90,
-                shapes: ["heart"],
-                colors: ["FFC0CB", "FF69B4", "FF1493", "C71585"],
+                shapes: ["heart", "square", "circle"],
+                colors: ["FFC0CB", "C71585", "#fbd410"],
             };
 
         function randomInRange(min, max) {

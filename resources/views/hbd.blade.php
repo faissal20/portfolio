@@ -82,7 +82,7 @@
             border-radius: 10px;
         }
 
-        span {
+        #click-here {
             font-family:monospace;
         }
 
@@ -168,7 +168,7 @@
         </h1>
         <h2>Dear Tasnim</h2>
         <p>24 years of you making the word beautifull by existing in it</p>
-        <span>click the gift</span>
+        <span id="click-here">click the gift</span>
 
         {{-- gift --}}
 
@@ -307,9 +307,10 @@
                     this.element.remove();
                     giftContent.classList.remove('hidden');
                     const message = document.querySelector('#message');
+                    const clickHere = document.querySelector('#click-here');
                     console.log(message);
                     message.classList.remove('hidden');
-
+                    clickHere.classList.add('hidden');
                     console.log('done');
                 }, duration );
             }

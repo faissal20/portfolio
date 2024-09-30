@@ -69,6 +69,10 @@ Route::get('/story', function (Request $request) {
     ]);
 });
 
+Route::get('/hbd', function(Request $request) {
+    return view('hbd');
+});
+
 Route::post('/story', function (Request $request) {
     cache()->put('forgive', true);
     return view('story', [
